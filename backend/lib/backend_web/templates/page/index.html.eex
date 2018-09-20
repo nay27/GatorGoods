@@ -1,0 +1,24 @@
+<div class="jumbotron">
+  <h2><%= gettext "Software Engineering class SFSU" %></h2>
+  <p class="lead">Fall 2018<br />Section 02 <br/> Team 15</p>
+</div>
+
+<div class="row marketing">
+  <div class="col-lg-6">
+    <h4>Team 15 Members:</h4>
+    <ul style="list-style-type: none;">
+      <li>
+        <a href="jonas" class="btn btn-link" role="button">Jonas</a>
+      </li>
+      <li>
+        <a href="eric" class="btn btn-link" role="button">Eric</a>
+      </li>
+      <li>
+        <a href="mariko" class="btn btn-link" >Mariko</a>
+      </li>
+      <li>
+        <a href="naylin" class="btn btn-link" role="button">Naylin</a>
+      </li>
+    </ul>
+  </div>
+</div>
