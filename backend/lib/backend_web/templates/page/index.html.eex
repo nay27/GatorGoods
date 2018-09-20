@@ -8,16 +8,16 @@
     <h4>Team 15 Members:</h4>
     <ul style="list-style-type: none;">
       <li>
-        <a href="#" class="btn btn-link" role="button">Jonas</a>
+        <a href="http://localhost:4000/jonas" class="btn btn-link" role="button">Jonas</a>
       </li>
       <li>
-        <a href="#" class="btn btn-link" role="button">Eric</a>
+        <a href="http://localhost:4000/eric" class="btn btn-link" role="button">Eric</a>
       </li>
       <li>
-        <a href="#" class="btn btn-link" >Mariko</a>
+        <a href="http://localhost:4000/mariko" class="btn btn-link" >Mariko</a>
       </li>
       <li>
-        <a href="#" class="btn btn-link" role="button">Naylin</a>
+        <a href="http://localhost:4000/naylin" class="btn btn-link" role="button">Naylin</a>
       </li>
     </ul>
   </div>
