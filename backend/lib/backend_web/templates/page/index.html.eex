@@ -6,18 +6,18 @@
 <div class="row marketing">
   <div class="col-lg-6">
     <h4>Team 15 Members:</h4>
-    <ul>
+    <ul style="list-style-type: none;">
       <li>
-        <button>Jonas </button>
+        <a href="#" class="btn btn-link" role="button">Jonas</a>
       </li>
       <li>
-        <button>Eric </button>
+        <a href="#" class="btn btn-link" role="button">Eric</a>
       </li>
       <li>
-        <button>Mariko </button>
+        <a href="#" class="btn btn-link" >Mariko</a>
       </li>
       <li>
-        <button>Naylin</button>
+        <a href="#" class="btn btn-link" role="button">Naylin</a>
       </li>
     </ul>
   </div>
