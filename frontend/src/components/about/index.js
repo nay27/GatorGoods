@@ -2,7 +2,12 @@ import React from 'react'
 
 class About extends React.Component {
     render() {
-        return <div>This is the about page.</div>
+        return (
+        <div>Name: Jonas Kühle <br /> 
+                    Team: 15 <br />
+                    CurrentStatus: Masters Student <br />
+        </div>
+        );
     }
 }
 

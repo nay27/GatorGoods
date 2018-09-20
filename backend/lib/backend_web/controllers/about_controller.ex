@@ -11,12 +11,9 @@ defmodule BackendWeb.AboutController do
  end
 
   def jonas(conn, _) do
-    response = %{
-    ABOUT: "This is the Jonas about page."
-    }
-
-    json(conn, response)
+    render conn, "jonas.html"
   end
+
   def eric(conn, _) do
     render conn, "eric.html"
   end
