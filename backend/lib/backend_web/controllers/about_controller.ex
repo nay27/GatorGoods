@@ -22,11 +22,7 @@ defmodule BackendWeb.AboutController do
     render conn, "mariko.html"
   end
   def naylin(conn, _) do
-  response = %{
-    ABOUT: "This is the Naylin about page."
-    }
-
-    json(conn, response)
+    render conn, "naylin.html"
   end
 
 end
