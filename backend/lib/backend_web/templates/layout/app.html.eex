@@ -15,7 +15,9 @@
     <div class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
+      <header id="header">
+        <em>SFSU-Fulda Software Engineering Project CSC 648-848, Fall 2018.  For Demonstration Only</em>
+      </header>
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
