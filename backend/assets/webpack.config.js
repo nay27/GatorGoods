@@ -1,21 +1,14 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: {
+        'home': './src/pages/home.js'
+    },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: '[name]--bundle.js',
+        path: path.resolve('../priv/static/js')
     },
-    devServer: {
-        contentBase: './dist',
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        })
-    ],
     module: {
         rules: [
             {
