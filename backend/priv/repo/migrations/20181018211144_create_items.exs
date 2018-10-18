@@ -18,7 +18,7 @@ defmodule Backend.Repo.Migrations.CreateItems do
       add :facultyMember, :boolean
       add :moderator, :boolean
       add :blacklisted, :boolean
-      
+
       timestamps()
     end
 
