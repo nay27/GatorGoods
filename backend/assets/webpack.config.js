@@ -1,4 +1,6 @@
-const path = require('path')
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -29,5 +31,14 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin([
+            { from: "static", to: path.resolve('../priv/static/') }
+        ]),
+        new CleanWebpackPlugin(
+            [path.resolve('../priv/static/')],
+            { dry: false, allowExternal: true }
+            )
+    ]
 }
