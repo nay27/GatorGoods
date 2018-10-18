@@ -12,5 +12,15 @@ defmodule Backend.Repo.Migrations.CreateItems do
       timestamps()
     end
 
+    create table(:users) do
+      add :firstname, :varchar
+      add :lastname, :varchar
+      add :facultyMember, :boolean
+      add :moderator, :boolean
+      add :blacklisted, :boolean
+      
+      timestamps()
+    end
+
   end
 end
