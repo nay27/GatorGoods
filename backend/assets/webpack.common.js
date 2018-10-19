@@ -3,9 +3,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
     entry: {
-        'home': './src/pages/home.js'
+        'home': path.resolve('./src/pages/home.js')
     },
     output: {
         filename: '[name]--bundle.js',
