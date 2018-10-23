@@ -16,7 +16,7 @@ defmodule Backend.Users do
   field :facultyMember, :boolean, default: false
   field :moderator, :boolean, default: false
   field :blacklisted, :boolean, default: false
-
+  has_many :items, Item
   timestamps()
   end
 
