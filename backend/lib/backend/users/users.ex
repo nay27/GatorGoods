@@ -1,4 +1,6 @@
 defmodule Backend.Users do
+  use Ecto.Schema
+  import Ecto.Changeset
   @moduledoc """
   The Users context.
   """
@@ -7,6 +9,22 @@ defmodule Backend.Users do
   alias Backend.Repo
 
   alias Backend.Users.Item
+
+  schema "users" do
+  field :firstname, :string, size: 50
+  field :lastname, :string, size: 50
+  field :facultyMember, :boolean, default: false
+  field :moderator, :boolean, default: false
+  field :blacklisted, :boolean, default: false
+
+  timestamps()
+  end
+
+  def changeset(users, attrs) do
+    users
+    |> cast(attrs, [:firstname, :lastname, :facultyMember, :moderator, :blacklisted])
+    |> validate_required([:firstname, :lastname, :facultyMember, :moderator, :blacklisted])
+  end
 
   @doc """
   Returns the list of items.

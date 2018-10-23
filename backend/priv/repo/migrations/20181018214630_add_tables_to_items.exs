@@ -8,16 +8,16 @@ defmodule Backend.Repo.Migrations.AddTablesToItems do
       add :facultyMember, :boolean
       add :moderator, :boolean
       add :blacklisted, :boolean
-#      has_many :items, Item
+      has_many :items, Item
 #      has_many :messages, Message
       timestamps()
     end
 
     create table(:messages) do
-#      add :recipient, User
-#      add :sender, User
+      add :recipient, Users
+      add :sender, Users
       add :sentAt, :datetime
-#      add :item, Item
+      add :item, Item
       add :content, :varchar
 #      add :location, Location
       timestamps()
