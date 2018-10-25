@@ -8,6 +8,7 @@ defmodule Backend.Users.Item do
     field :price, :integer
     field :status, :string
     field :title, :string
+    field :image, :string
 
     timestamps()
   end

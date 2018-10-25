@@ -6,7 +6,7 @@ defmodule BackendWeb.ItemController do
 
   def index(conn, _params) do
     items = Users.list_items()
-    render(conn, "index.html", items: items)
+    render(conn, "list.html", items: items)
   end
 
   def new(conn, _params) do
