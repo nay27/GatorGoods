@@ -15,6 +15,7 @@ defmodule BackendWeb.ItemController do
   end
 
   def create(conn, %{"item" => item_params}) do
+    IO.inspect item_params
     case Users.create_item(item_params) do
       {:ok, item} ->
         conn

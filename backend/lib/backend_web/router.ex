@@ -17,6 +17,7 @@ defmodule BackendWeb.Router do
     pipe_through :browser # Use the default browser stack
     resources "/items", ItemController
     get "/", PageController, :index
+    get "/image/:id", PageController, :image
     get "/jonas", AboutController, :jonas
     get "/eric", AboutController, :eric
     get "/mariko", AboutController, :mariko

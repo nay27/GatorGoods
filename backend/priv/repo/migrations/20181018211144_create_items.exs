@@ -7,8 +7,7 @@ defmodule Backend.Repo.Migrations.CreateItems do
       add :description, :string
       add :price, :integer
       add :status, :string
-      add :onlyVisibleToFaculty, :boolean, default: false, null: false
-
+      add :category, :string
       timestamps()
     end
 
