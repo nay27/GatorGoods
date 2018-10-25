@@ -21,6 +21,8 @@ defmodule BackendWeb.Router do
     get "/eric", AboutController, :eric
     get "/mariko", AboutController, :mariko
     get "/naylin", AboutController, :naylin
+    get "/items", ItemsController, :index
+    get "/items/search", ItemsController, :search
   end
 
   # Other scopes may use custom stacks.
