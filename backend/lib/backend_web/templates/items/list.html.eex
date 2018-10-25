@@ -1,0 +1,33 @@
+<form id="search-form">
+    <label for="search-input"
+    ><input type="text" id="search-input" /></label>
+    <button class="btn btn-primary">Search</button>
+</form>
+
+<ul class="item-list">
+<%= if length(@items) > 0 do %>
+    <p>Showing <%= length(@items) %> item(s)</p>
+    <%= for item <- @items do %>
+        <li>
+        <strong><%= item.title %> &ndash; <%= format_price(item.price) %></strong>
+        <%= if String.length(item.image) > 0 do %>
+        <img src="<%= static_path(@conn, image_path(item.image)) %>"  width="200px"/>
+        <% end %>
+        </li>
+        <p><%= item.description %></p>
+    <% end %>
+<% else %>
+    <p>No items found</p>
+<% end %>
+</ul>
+
+<script>
+document.getElementById("search-form").addEventListener('submit', function(event) {
+    event.preventDefault();
+    const baseURL = "<%= items_url(@conn, :search) %>";
+    let text = document.getElementById("search-input").value
+    text = text.replace(' ', '+');
+    const url = `${baseURL}?query=${text}`;
+    window.location = url;
+})
+</script>
