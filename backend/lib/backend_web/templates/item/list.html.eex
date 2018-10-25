@@ -10,7 +10,7 @@
     <%= for item <- @items do %>
         <li>
         <strong><%= item.title %> &ndash; <%= format_price(item.price) %></strong>
-        <%= if String.length(item.image) > 0 do %>
+        <%= if !is_nil(item.image) and String.length(item.image) > 0 do %>
         <img src="<%= static_path(@conn, image_path(item.image)) %>"  width="200px"/>
         <% end %>
         </li>
