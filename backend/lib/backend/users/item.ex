@@ -9,7 +9,7 @@ defmodule Backend.Users.Item do
     field :price, :integer
     field :status, :string
     field :title, :string
-    belongs_to :user, User
+
     timestamps()
   end
 
