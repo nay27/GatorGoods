@@ -5,7 +5,6 @@ defmodule Backend.Users.Item do
 
   schema "items" do
     field :description, :string
-    field :onlyVisibleToFaculty, :boolean, default: false
     field :price, :integer
     field :status, :string
     field :title, :string
@@ -16,7 +15,7 @@ defmodule Backend.Users.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:title, :description, :price, :status, :onlyVisibleToFaculty])
-    |> validate_required([:title, :description, :price, :status, :onlyVisibleToFaculty])
+    |> cast(attrs, [:title, :description, :price, :status])
+    |> validate_required([:title, :description, :price, :status])
   end
 end

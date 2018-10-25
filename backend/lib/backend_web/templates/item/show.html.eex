@@ -22,11 +22,6 @@
     <%= @item.status %>
   </li>
 
-  <li>
-    <strong>Onlyvisibletofaculty:</strong>
-    <%= @item.onlyVisibleToFaculty %>
-  </li>
-
 </ul>
 
 <span><%= link "Edit", to: item_path(@conn, :edit, @item) %></span>

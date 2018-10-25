@@ -29,11 +29,6 @@
     <%= error_tag f, :status %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :onlyVisibleToFaculty, class: "control-label" %>
-    <%= checkbox f, :onlyVisibleToFaculty, class: "checkbox" %>
-    <%= error_tag f, :onlyVisibleToFaculty %>
-  </div>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

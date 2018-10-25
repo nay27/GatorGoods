@@ -1,13 +1,8 @@
-<h2>Listing Items</h2>
+<h2>Listing items</h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th>Onlyvisibletofaculty</th>
 
       <th></th>
     </tr>
@@ -15,10 +10,6 @@
   <tbody>
 <%= for item <- @items do %>
     <tr>
-      <td><%= item.title %></td>
-      <td><%= item.description %></td>
-      <td><%= item.price %></td>
-      <td><%= item.status %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: item_path(@conn, :show, item), class: "btn btn-default btn-xs" %></span>
@@ -30,4 +21,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Item", to: item_path(@conn, :new) %></span>
+<span><%= link "New item", to: item_path(@conn, :new) %></span>
