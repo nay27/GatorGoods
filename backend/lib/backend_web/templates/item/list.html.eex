@@ -1,0 +1,52 @@
+<form id="search-form" class="">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <select class="custom-select" id="category-select">
+                <option class="dropdown-item" value="-1" selected>All</option>
+                <%= for category <- @categories do %>
+                <option class="dropdown-item" value="<%= category.id %>"><%= category.name %></option>
+                <% end %>
+            </select>
+        </div>
+        <input type="text" id="search-input" class="form-control" />
+        <div class="input-group-append">
+            <button class="btn btn-outline" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
+<ul class="item-list">
+<%= if length(@items) > 0 do %>
+    <p>Showing <%= length(@items) %> item(s)</p>
+    <%= for item <- @items do %>
+        <li>
+        <strong><%= item.title %> &ndash; <%= format_price(item.price) %></strong>
+        <%= if !is_nil(item.image) and String.length(item.image) > 0 do %>
+        <img src="<%= static_path(@conn, image_path(item.image)) %>"  width="200px"/>
+        <% end %>
+        </li>
+        <p>status: <%= item.status %></p>
+        <p>description: <%= item.description %></p>
+    <% end %>
+<% else %>
+    <p>No items found</p>
+<% end %>
+</ul>
+
+<script>
+document.getElementById("search-form").addEventListener('submit', function(event) {
+    event.preventDefault();
+    const baseURL = "<%= item_url(@conn, :search) %>";
+    let text = document.getElementById("search-input").value;
+    const category_select = document.getElementById("category-select")
+    const category_index = category_select.selectedIndex
+    const category = parseInt(category_select.children[category_index].value);
+    text = text.replace(' ', '+');
+    const category_query = category >= 0 ? `category=${category}` : "";
+    let url = `${baseURL}?query=${text}`;
+    if (category_query) {
+        url += `&${category_query}`;
+    }
+    window.location = url;
+})
+</script>

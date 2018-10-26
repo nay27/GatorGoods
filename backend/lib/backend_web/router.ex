@@ -15,12 +15,15 @@ defmodule BackendWeb.Router do
 
   scope "/", BackendWeb do
     pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-    get "/jonas", AboutController, :jonas
-    get "/eric", AboutController, :eric
-    get "/mariko", AboutController, :mariko
-    get "/naylin", AboutController, :naylin
+    get "/items/search", ItemController, :search
+    resources "/items", ItemController
+    get "/", ItemController, :index
+    get "/image/:id", PageController, :image
+    get "/about", AboutController, :index
+    get "/about/jonas", AboutController, :jonas
+    get "/about/eric", AboutController, :eric
+    get "/about/mariko", AboutController, :mariko
+    get "/about/naylin", AboutController, :naylin
   end
 
   # Other scopes may use custom stacks.
