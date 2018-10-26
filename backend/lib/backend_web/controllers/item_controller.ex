@@ -6,7 +6,9 @@ defmodule BackendWeb.ItemController do
 
   def index(conn, _params) do
     items = Users.list_items()
-    render(conn, "list.html", items: items)
+    # TODO replace with database categories
+    all_categories = [%{name: "Books", id: 1}, %{name: "Furniture", id: 2}, %{name: "Food", id: 3}, %{name: "Electronics", id: 3}]
+    render(conn, "list.html", items: items, categories: all_categories)
   end
 
   def new(conn, _params) do
@@ -60,12 +62,14 @@ defmodule BackendWeb.ItemController do
     |> redirect(to: item_path(conn, :index))
   end
 
-  def search(conn, %{"query" => query}) do
+  def search(conn, %{"query" => query} = params) do
+    category = Map.get(params, "category")
     query = case query do
       nil -> ""
       query -> query
     end
-    # IO.puts Users.search_item(query)
-    render(conn, "list.html", items: Users.search_item(query))
+    # TODO replace with database categories
+    all_categories = [%{name: "Books", id: 1}, %{name: "Furniture", id: 2}, %{name: "Food", id: 3}, %{name: "Electronics", id: 3}]
+    render(conn, "list.html", items: Users.search_item(query, category), categories: all_categories)
   end
 end

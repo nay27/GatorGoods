@@ -102,12 +102,16 @@ defmodule Backend.Users do
     Item.changeset(item, %{})
   end
 
-  def search_item(term) do
+  def search_item(term, category) do
     processed = term |> String.replace("%", " ")
-    query = Item 
-    |> where([i], ilike(i.title, ^"%#{processed}%"))
-    |> or_where([i], ilike(i.description, ^"%#{processed}%"))
-    # query = from i in "items", where: ilike(i.title, ^"%#{processed}%")
+    query = if category do
+      category = String.to_integer(category)
+      Item
+      |> where([i], i.category_id == ^category and (ilike(i.title, ^"%#{processed}%") or ilike(i.description, ^"%#{processed}%")))
+    else
+      Item
+      |> where([i], ilike(i.title, ^"%#{processed}%") or ilike(i.description, ^"%#{processed}%"))
+    end
     Repo.all(query)
   end
 end
