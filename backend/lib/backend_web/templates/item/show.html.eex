@@ -24,9 +24,9 @@
 
   <li>
       <strong>Category:</strong>
-     <%= for category <- @item.category do %>
-     <span class="Name"><%= category.name %></span>
-     <% end %>
+      <%= for category <- @item.category do %>
+      <span class="Name"><%= category.name %></span>
+      <% end %>
     </li>
 </ul>
 

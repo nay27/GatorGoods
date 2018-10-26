@@ -24,7 +24,7 @@
 <script>
 document.getElementById("search-form").addEventListener('submit', function(event) {
     event.preventDefault();
-    const baseURL = "<%= items_url(@conn, :search) %>";
+    const baseURL = "<%= item_url(@conn, :search) %>";
     let text = document.getElementById("search-input").value
     text = text.replace(' ', '+');
     const url = `${baseURL}?query=${text}`;
