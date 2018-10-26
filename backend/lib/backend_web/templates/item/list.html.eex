@@ -6,7 +6,6 @@
                 <%= for category <- @categories do %>
                 <option class="dropdown-item" value="<%= category.id %>"><%= category.name %></option>
                 <% end %>
-                <option class="dropdown-item" value="2">Furniture</option>
             </select>
         </div>
         <input type="text" id="search-input" class="form-control" />

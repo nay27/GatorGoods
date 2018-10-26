@@ -7,6 +7,7 @@ defmodule Backend.Users do
   alias Backend.Repo
 
   alias Backend.Users.Item
+  alias Backend.Users.Category
 
   @doc """
   Returns the list of items.
@@ -19,6 +20,10 @@ defmodule Backend.Users do
   """
   def list_items do
     Repo.all(Item)
+  end
+
+  def list_categories do
+    Repo.all(Category)
   end
 
   @doc """
@@ -35,7 +40,9 @@ defmodule Backend.Users do
       ** (Ecto.NoResultsError)
 
   """
-  def get_item!(id), do: Repo.get!(Item, id)
+  def get_item!(id) do
+    Repo.preload(Repo.get!(Item, id), :category)
+  end 
 
   @doc """
   Creates a item.
