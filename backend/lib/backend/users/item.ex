@@ -9,6 +9,7 @@ defmodule Backend.Users.Item do
     field :status, :string
     field :title, :string
     field :image, :string
+    has_many :categories, Backend.Users.Category
 
     timestamps()
   end
@@ -16,7 +17,8 @@ defmodule Backend.Users.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:title, :description, :price, :status])
-    |> validate_required([:title, :description, :price, :status])
+    |> cast(attrs, [:title, :description, :price, :status, :categories])
+    |> validate_required([:title, :description, :price, :status, :categories])
+    |> cast_assoc(:categories)
   end
 end

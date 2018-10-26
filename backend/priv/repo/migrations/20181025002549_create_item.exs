@@ -6,7 +6,6 @@ defmodule Backend.Repo.Migrations.CreateItem do
       add :title, :string
       add :description, :string
       add :price, :integer
-      add :category, :string
       add :status, :string
 
       timestamps()
