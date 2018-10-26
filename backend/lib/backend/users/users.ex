@@ -101,4 +101,13 @@ defmodule Backend.Users do
   def change_item(%Item{} = item) do
     Item.changeset(item, %{})
   end
+
+  def search_item(term) do
+    processed = term |> String.replace("%", " ")
+    query = Item 
+    |> where([i], ilike(i.title, ^"%#{processed}%"))
+    |> or_where([i], ilike(i.description, ^"%#{processed}%"))
+    # query = from i in "items", where: ilike(i.title, ^"%#{processed}%")
+    Repo.all(query)
+  end
 end

@@ -3,11 +3,7 @@ defmodule BackendWeb.AboutController do
   alias Backend.{About} #Repo,
 
   def index(conn, _) do
-   response = %{
-     ABOUT: "This is the about page."
-   }
-
-   json(conn, response)
+   render conn, "index.html"
  end
 
   def jonas(conn, _) do

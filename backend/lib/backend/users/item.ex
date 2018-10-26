@@ -6,7 +6,7 @@ defmodule Backend.Users.Item do
   schema "items" do
     field :description, :string
     field :price, :integer
-    field :status, :string
+    field :status, :string, default: "pending"
     field :title, :string
     field :image, :string
 

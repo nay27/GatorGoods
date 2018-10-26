@@ -14,7 +14,8 @@
         <img src="<%= static_path(@conn, image_path(item.image)) %>"  width="200px"/>
         <% end %>
         </li>
-        <p><%= item.description %></p>
+        <p>status: <%= item.status %></p>
+        <p>description: <%= item.description %></p>
     <% end %>
 <% else %>
     <p>No items found</p>
@@ -24,7 +25,7 @@
 <script>
 document.getElementById("search-form").addEventListener('submit', function(event) {
     event.preventDefault();
-    const baseURL = "<%= items_url(@conn, :search) %>";
+    const baseURL = "<%= item_url(@conn, :search) %>";
     let text = document.getElementById("search-input").value
     text = text.replace(' ', '+');
     const url = `${baseURL}?query=${text}`;

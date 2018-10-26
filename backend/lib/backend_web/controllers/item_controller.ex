@@ -16,6 +16,7 @@ defmodule BackendWeb.ItemController do
 
   def create(conn, %{"item" => item_params}) do
     IO.inspect item_params
+    item_params = Map.put(item_params, "status", "pending")
     case Users.create_item(item_params) do
       {:ok, item} ->
         conn
@@ -57,5 +58,14 @@ defmodule BackendWeb.ItemController do
     conn
     |> put_flash(:info, "Item deleted successfully.")
     |> redirect(to: item_path(conn, :index))
+  end
+
+  def search(conn, %{"query" => query}) do
+    query = case query do
+      nil -> ""
+      query -> query
+    end
+    # IO.puts Users.search_item(query)
+    render(conn, "list.html", items: Users.search_item(query))
   end
 end
