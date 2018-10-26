@@ -6,7 +6,9 @@ defmodule BackendWeb.ItemController do
 
   def index(conn, _params) do
     items = Users.list_items()
-    render(conn, "index.html", items: items)
+    # TODO replace with database categories
+    all_categories = [%{name: "Books", id: 1}, %{name: "Furniture", id: 2}, %{name: "Food", id: 3}, %{name: "Electronics", id: 3}]
+    render(conn, "list.html", items: items, categories: all_categories)
   end
 
   def new(conn, _params) do
@@ -16,6 +18,7 @@ defmodule BackendWeb.ItemController do
 
   def create(conn, %{"item" => item_params}) do
     IO.inspect item_params
+    item_params = Map.put(item_params, "status", "pending")
     case Users.create_item(item_params) do
       {:ok, item} ->
         conn
@@ -57,5 +60,16 @@ defmodule BackendWeb.ItemController do
     conn
     |> put_flash(:info, "Item deleted successfully.")
     |> redirect(to: item_path(conn, :index))
+  end
+
+  def search(conn, %{"query" => query} = params) do
+    category = Map.get(params, "category")
+    query = case query do
+      nil -> ""
+      query -> query
+    end
+    # TODO replace with database categories
+    all_categories = [%{name: "Books", id: 1}, %{name: "Furniture", id: 2}, %{name: "Food", id: 3}, %{name: "Electronics", id: 3}]
+    render(conn, "list.html", items: Users.search_item(query, category), categories: all_categories)
   end
 end

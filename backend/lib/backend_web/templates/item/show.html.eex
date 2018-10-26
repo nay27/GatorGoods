@@ -28,7 +28,6 @@
      <span class="Name"><%= category.name %></span>
      <% end %>
     </li>
-
 </ul>
 
 <span><%= link "Edit", to: item_path(@conn, :edit, @item) %></span>

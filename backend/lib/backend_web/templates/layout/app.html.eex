@@ -23,14 +23,14 @@
       </div>
       <nav>
         <div class="nav-grid">
-          <a href="<%= page_path(@conn, :index) %>">
+          <a href="<%= item_path(@conn, :index) %>">
             <img src="<%= static_path(@conn, "/images/sticker_logo.png") %>" alt="Gator Goods Logo" height="50px"/>
           </a>
           <%# <div style="height: 100%; width: 100%; background-color: red;"></div> %>
           <ul class="links">
-            <li><a href="<%= page_path(@conn, :index) %>">Home</a></li>
-            <li><a href="<%= page_path(@conn, :index) %>">About</a></li>
-            <li><a href="<%= items_path(@conn, :index) %>">Items</a></li>
+            <li><a href="<%= item_path(@conn, :index) %>">Home</a></li>
+            <li><a href="<%= about_path(@conn, :index) %>">About</a></li>
+            <li><a href="<%= item_path(@conn, :new) %>">Sell</a></li>
           </ul>
         </div>
       </nav>

@@ -6,10 +6,10 @@ defmodule Backend.Users.Item do
   schema "items" do
     field :description, :string
     field :price, :integer
-    field :status, :string
+    belongs_to :category, Backend.Users.Category
+    field :status, :string, default: "pending"
     field :title, :string
     field :image, :string
-    belongs_to :category, Backend.Users.Category
 
     timestamps()
   end

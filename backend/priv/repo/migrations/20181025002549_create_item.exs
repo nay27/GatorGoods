@@ -14,6 +14,5 @@ defmodule Backend.Repo.Migrations.CreateItem do
 
       timestamps()
     end
-    create index(:items, [:category_id])
   end
 end
