@@ -22,6 +22,10 @@
     <%= @item.status %>
   </li>
 
+  <li>
+      <strong>Category:</strong>
+      <%= @item.category.name %>Z
+    </li>
 </ul>
 
 <span><%= link "Edit", to: item_path(@conn, :edit, @item) %></span>

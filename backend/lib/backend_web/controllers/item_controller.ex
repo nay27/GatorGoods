@@ -7,7 +7,7 @@ defmodule BackendWeb.ItemController do
   def index(conn, _params) do
     items = Users.list_items()
     # TODO replace with database categories
-    all_categories = [%{name: "Books", id: 1}, %{name: "Furniture", id: 2}, %{name: "Food", id: 3}, %{name: "Electronics", id: 3}]
+    all_categories = Users.list_categories()
     render(conn, "list.html", items: items, categories: all_categories)
   end
 
@@ -69,7 +69,7 @@ defmodule BackendWeb.ItemController do
       query -> query
     end
     # TODO replace with database categories
-    all_categories = [%{name: "Books", id: 1}, %{name: "Furniture", id: 2}, %{name: "Food", id: 3}, %{name: "Electronics", id: 3}]
+    all_categories = Users.list_categories()
     render(conn, "list.html", items: Users.search_item(query, category), categories: all_categories)
   end
 end
