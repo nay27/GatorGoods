@@ -7,7 +7,7 @@
       <th>Description</th>
       <th>Price</th>
       <th>Status</th>
-      <th>Category</th>
+
       <th></th>
     </tr>
   </thead>
@@ -18,7 +18,7 @@
       <td><%= item.description %></td>
       <td><%= item.price %></td>
       <td><%= item.status %></td>
-      <td><%= item.categories%></td>
+
 
       <td class="text-right">
         <span><%= link "Show", to: item_path(@conn, :show, item), class: "btn btn-default btn-xs" %></span>

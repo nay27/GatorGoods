@@ -8,7 +8,7 @@ defmodule Backend.Users.Category do
 
   schema "categories" do
     field :name, :string, default: "NONE SELECTED"
-    belongs_to :item, Backend.Users.Item
+    has_many :items, Backend.Users.Item
   end
 
   @required_fields ~w(name)
