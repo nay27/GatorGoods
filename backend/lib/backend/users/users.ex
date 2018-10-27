@@ -123,7 +123,7 @@ defmodule Backend.Users do
       Item
       |> where([i], ilike(i.title, ^"%#{processed}%") or ilike(i.description, ^"%#{processed}%"))
     end
-    Repo.all(query)
+    Repo.preload(Repo.all(query), :category)
   end
 
 
