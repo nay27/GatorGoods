@@ -32,7 +32,7 @@ defmodule BackendWeb.ItemController do
       {:ok, item} ->
         if upload = item_params["image"] do
           extension = Path.extname(upload.filename)
-          File.cp(upload.path, Path.join(["priv","static","images","media", "#{upload.filename}"]))
+          File.cp(upload.path, Path.join(["media", "#{upload.filename}"]))
           itemm = Ecto.Changeset.change item, image: upload.filename
           Backend.Repo.update(itemm)
         end
