@@ -24,7 +24,7 @@
 
   <li>
       <strong>Category:</strong>
-      <%= @item.category.name %>Z
+      <%= if !is_nil(@item.category_id), do: @item.category.name, else: "None" %>
     </li>
 </ul>
 
