@@ -15,6 +15,7 @@ defmodule BackendWeb.Router do
 
   scope "/", BackendWeb do
     pipe_through :browser # Use the default browser stack
+    get "/c/:mode", CategoriesController, :create_default_categories
     get "/items/search", ItemController, :search
     resources "/items", ItemController
     get "/", ItemController, :index

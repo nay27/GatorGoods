@@ -19,7 +19,7 @@ defmodule Backend.Users do
 
   """
   def list_items do
-    Repo.all(Item)
+    Repo.preload(Repo.all(Item), :category)
   end
 
   def list_categories do
@@ -119,6 +119,17 @@ defmodule Backend.Users do
       Item
       |> where([i], ilike(i.title, ^"%#{processed}%") or ilike(i.description, ^"%#{processed}%"))
     end
-    Repo.all(query)
+    Repo.preload(Repo.all(query), :category)
+  end
+
+
+  # Prefab category for seeding DB
+  def create_category(name) do
+    category = %Category{name: name}
+    Repo.insert(category)
+  end
+
+  def delete_category() do
+    Repo.delete_all(Category)
   end
 end

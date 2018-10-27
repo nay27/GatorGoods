@@ -17,8 +17,7 @@ defmodule Backend.Users.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:title, :description, :price, :status])
-    |> validate_required([:title, :description, :price, :status])
-    |> cast_assoc(:category)
+    |> cast(attrs, [:title, :description, :price, :status, :category_id])
+    |> validate_required([:title, :description, :price, :status, :category_id])
   end
 end
