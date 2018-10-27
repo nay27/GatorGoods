@@ -121,4 +121,17 @@ defmodule Backend.Users do
     end
     Repo.all(query)
   end
+
+
+  # Prefab category for seeding DB
+  def create_category(name) do
+    category = %Category{name: name}
+    Repo.insert(category)
+  end
+
+  def delete_category() do
+    Repo.delete_all(Category)
+  end
+
 end
+
