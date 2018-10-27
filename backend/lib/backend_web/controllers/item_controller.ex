@@ -4,16 +4,25 @@ defmodule BackendWeb.ItemController do
   alias Backend.Users
   alias Backend.Users.Item
 
+  def all_categories do
+     Users.list_categories()
+  end
+
+  def category_array do
+    Enum.map(all_categories(), fn c -> [key: c.name, value: c.id] end)
+  end
+
+  def category_array_with_none do
+    [[key: "None", value: ""] | category_array()]
+  end
   def index(conn, _params) do
     items = Users.list_items()
-    # TODO replace with database categories
-    all_categories = Users.list_categories()
-    render(conn, "list.html", items: items, categories: all_categories)
+    render(conn, "list.html", items: items, categories: all_categories())
   end
 
   def new(conn, _params) do
     changeset = Users.change_item(%Item{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, categories: category_array_with_none())
   end
 
   def create(conn, %{"item" => item_params}) do
@@ -25,7 +34,7 @@ defmodule BackendWeb.ItemController do
         |> put_flash(:info, "Item created successfully.")
         |> redirect(to: item_path(conn, :show, item))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, categories: category_array_with_none())
     end
   end
 
@@ -37,7 +46,8 @@ defmodule BackendWeb.ItemController do
   def edit(conn, %{"id" => id}) do
     item = Users.get_item!(id)
     changeset = Users.change_item(item)
-    render(conn, "edit.html", item: item, changeset: changeset)
+    categories = Enum.map(all_categories(), fn c -> [key: c.name, value: c.id] end)
+    render(conn, "edit.html", item: item, changeset: changeset, categories: category_array_with_none())
   end
 
   def update(conn, %{"id" => id, "item" => item_params}) do
@@ -49,7 +59,7 @@ defmodule BackendWeb.ItemController do
         |> put_flash(:info, "Item updated successfully.")
         |> redirect(to: item_path(conn, :show, item))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", item: item, changeset: changeset)
+        render(conn, "edit.html", item: item, changeset: changeset, categories: category_array_with_none())
     end
   end
 
@@ -68,8 +78,7 @@ defmodule BackendWeb.ItemController do
       nil -> ""
       query -> query
     end
-    # TODO replace with database categories
-    all_categories = Users.list_categories()
-    render(conn, "list.html", items: Users.search_item(query, category), categories: all_categories)
+
+    render(conn, "list.html", items: Users.search_item(query, category), categories: all_categories())
   end
 end

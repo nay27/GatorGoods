@@ -24,6 +24,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :category, class: "control-label" %>
+    <%= select f, :category_id, @categories %>
+    <%= error_tag f, :category_id %>
+  </div>
+
+  <div class="form-group">
         <label>Photo</label>
         <%= file_input f, :photo, class: "form-control" %>
   </div>
