@@ -30,8 +30,9 @@
   </div>
 
   <div class="form-group">
-        <label>Photo</label>
-        <%= file_input f, :photo, class: "form-control" %>
+       <%= label f, :image, class: "control-label" %>
+      <%= file_input f, :image, class: "form-control" %>
+      <%= error_tag f, :image %>
   </div>
 
   <div class="form-group">

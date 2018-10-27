@@ -30,6 +30,12 @@ defmodule BackendWeb.ItemController do
     item_params = Map.put(item_params, "status", "pending")
     case Users.create_item(item_params) do
       {:ok, item} ->
+        if upload = item_params["image"] do
+          extension = Path.extname(upload.filename)
+          File.cp(upload.path, Path.join(["priv","static","images","media", "#{upload.filename}"]))
+          itemm = Ecto.Changeset.change item, image: upload.filename
+          Backend.Repo.update(itemm)
+        end
         conn
         |> put_flash(:info, "Item created successfully.")
         |> redirect(to: item_path(conn, :show, item))
@@ -78,7 +84,6 @@ defmodule BackendWeb.ItemController do
       nil -> ""
       query -> query
     end
-
     render(conn, "list.html", items: Users.search_item(query, category), categories: all_categories())
   end
 end

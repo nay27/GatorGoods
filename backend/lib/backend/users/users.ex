@@ -26,6 +26,10 @@ defmodule Backend.Users do
     Repo.all(Category)
   end
 
+  def list_categories do
+    Repo.all(Category)
+  end
+
   @doc """
   Gets a single item.
 
