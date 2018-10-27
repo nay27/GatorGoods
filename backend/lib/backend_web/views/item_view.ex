@@ -20,7 +20,7 @@ defmodule BackendWeb.ItemView do
   def image_path(rel) do
     case rel do
         nil -> "/"
-        rel -> "/images/media/" <> rel
+        rel -> "/media/" <> rel
     end
   end
 end
