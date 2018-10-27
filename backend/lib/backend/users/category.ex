@@ -18,6 +18,5 @@ defmodule Backend.Users.Category do
     model
     |> cast(params, @required_fields)
     |> validate_required([:name])
-    |> cast_assoc(:items)
   end
 end

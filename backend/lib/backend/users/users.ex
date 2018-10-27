@@ -19,7 +19,11 @@ defmodule Backend.Users do
 
   """
   def list_items do
-    Repo.all(Item)
+    Repo.preload(Repo.all(Item), :category)
+  end
+
+  def list_categories do
+    Repo.all(Category)
   end
 
   def list_categories do
