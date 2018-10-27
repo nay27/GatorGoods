@@ -26,10 +26,6 @@ defmodule Backend.Users do
     Repo.all(Category)
   end
 
-  def list_categories do
-    Repo.all(Category)
-  end
-
   @doc """
   Gets a single item.
 
@@ -136,6 +132,4 @@ defmodule Backend.Users do
   def delete_category() do
     Repo.delete_all(Category)
   end
-
 end
-
