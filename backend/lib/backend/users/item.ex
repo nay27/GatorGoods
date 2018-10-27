@@ -6,10 +6,10 @@ defmodule Backend.Users.Item do
   schema "items" do
     field :description, :string
     field :price, :integer
-    field :status, :string
+    belongs_to :category, Backend.Users.Category
+    field :status, :string, default: "pending"
     field :title, :string
     field :image, :string
-    belongs_to :category, Backend.Users.Category
 
     timestamps()
   end
@@ -19,5 +19,9 @@ defmodule Backend.Users.Item do
     item
     |> cast(attrs, [:title, :description, :price, :status])
     |> validate_required([:title, :description, :price, :status])
+<<<<<<< HEAD
+=======
+    |> cast_assoc(:category)
+>>>>>>> 63fc542026e5f18b9fd775afcb028c9f76774174
   end
 end

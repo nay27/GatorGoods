@@ -6,7 +6,13 @@ defmodule BackendWeb.ItemController do
   alias Backend.Repo
   def index(conn, _params) do
     items = Users.list_items()
+<<<<<<< HEAD
     render(conn, "list.html", items: items)
+=======
+    # TODO replace with database categories
+    all_categories = Users.list_categories()
+    render(conn, "list.html", items: items, categories: all_categories)
+>>>>>>> 63fc542026e5f18b9fd775afcb028c9f76774174
   end
 
   def new(conn, _params) do
@@ -16,6 +22,7 @@ defmodule BackendWeb.ItemController do
 
   def create(conn, %{"item" => item_params}) do
     IO.inspect item_params
+    item_params = Map.put(item_params, "status", "pending")
     case Users.create_item(item_params) do
       {:ok, item} ->
         if upload = item_params["image"] do
@@ -63,5 +70,16 @@ defmodule BackendWeb.ItemController do
     conn
     |> put_flash(:info, "Item deleted successfully.")
     |> redirect(to: item_path(conn, :index))
+  end
+
+  def search(conn, %{"query" => query} = params) do
+    category = Map.get(params, "category")
+    query = case query do
+      nil -> ""
+      query -> query
+    end
+    # TODO replace with database categories
+    all_categories = Users.list_categories()
+    render(conn, "list.html", items: Users.search_item(query, category), categories: all_categories)
   end
 end
