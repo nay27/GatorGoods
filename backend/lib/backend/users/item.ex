@@ -19,6 +19,5 @@ defmodule Backend.Users.Item do
     item
     |> cast(attrs, [:title, :description, :price, :status])
     |> validate_required([:title, :description, :price, :status])
-    |> cast_assoc(:categories)
   end
 end

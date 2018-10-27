@@ -23,11 +23,9 @@
   </li>
 
   <li>
-      <strong>Category:</strong>
-     <%= for category <- @item.category do %>
-     <span class="Name"><%= category.name %></span>
-     <% end %>
-    </li>
+    <strong>Image:</strong>
+    <img src="/media/.jpg"/>
+  </li>
 
 </ul>
 

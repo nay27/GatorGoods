@@ -3,10 +3,10 @@ defmodule BackendWeb.ItemController do
 
   alias Backend.Users
   alias Backend.Users.Item
-
+  alias Backend.Repo
   def index(conn, _params) do
     items = Users.list_items()
-    render(conn, "index.html", items: items)
+    render(conn, "list.html", items: items)
   end
 
   def new(conn, _params) do
@@ -18,6 +18,12 @@ defmodule BackendWeb.ItemController do
     IO.inspect item_params
     case Users.create_item(item_params) do
       {:ok, item} ->
+        if upload = item_params["image"] do
+          extension = Path.extname(upload.filename)
+          File.cp(upload.path, Path.join(["priv","static","images","media", "#{upload.filename}"]))
+          itemm = Ecto.Changeset.change item, image: upload.filename
+          Backend.Repo.update(itemm)
+        end
         conn
         |> put_flash(:info, "Item created successfully.")
         |> redirect(to: item_path(conn, :show, item))
