@@ -6,13 +6,9 @@ defmodule BackendWeb.ItemController do
   alias Backend.Repo
   def index(conn, _params) do
     items = Users.list_items()
-<<<<<<< HEAD
-    render(conn, "list.html", items: items)
-=======
     # TODO replace with database categories
     all_categories = Users.list_categories()
     render(conn, "list.html", items: items, categories: all_categories)
->>>>>>> 63fc542026e5f18b9fd775afcb028c9f76774174
   end
 
   def new(conn, _params) do
