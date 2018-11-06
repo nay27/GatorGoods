@@ -1,21 +1,38 @@
+import styled from "styled-components";
 import { BACKEND_API_URL } from "../config";
+import Error from "./Error";
+
+const List = styled.ul`
+    list-style: none;
+`;
 
 class Users extends React.Component {
     state = {
         loading: false,
-        users: null
+        users: null,
+        error: null
     }
-    componentDidMount() {
+    async componentDidMount() {
         this.setState({loading: true});
-        fetch(`${BACKEND_API_URL}/users/`)
-            .then(res => res.json())
-            .then(data => console.log(data));
+        try {
+            const res = await fetch(`${BACKEND_API_URL}/users/`);
+            const data = await res.json();
+            this.setState({users: data.results, loading: false});
+        } catch (error) {
+            this.setState({error: error, loading: false});
+        }
     }
     render() {
         return (
             <>
+                <h1>Users:</h1>
                 { this.state.loading && <p>Loading</p> }
-                { this.state.users && <p>{users.length}</p>}
+                <Error error={this.state.error} />
+                <List>
+                {this.state.users && this.state.users.map(user => (
+                        <li><strong>name:</strong>{user.username}, <strong>email:</strong> {user.email}</li>
+                ))}
+                </List>
             </>
         );
     }
