@@ -14,6 +14,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           {this.props.styleTags}
+          <link type="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"></link>
         </Head>
         <body>
           <Main />
