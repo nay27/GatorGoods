@@ -5,10 +5,10 @@ const ErrorWrapper = styled.div`
     color: #960018;
     padding: 0.5rem;
     border-radius: 2rem;
+    text-align: center;
     display: flex;
+    justify-content: center;
     align-content: center;
-    justify-content: space-around;
-    margin: 2rem;
 `;
 
 const Error = props => (

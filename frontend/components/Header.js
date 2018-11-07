@@ -8,10 +8,13 @@ const Disclaimer = styled.header`
 `;
 
 export default () => (
-    <header className="sticky-top">
-        <Disclaimer>
-            <em>SFSU-Fulda Software Engineering Project CSC 648-848, Fall 2018.  For Demonstration Only</em>
-        </Disclaimer>
-        <Nav />
-    </header>
+  <header className="sticky-top">
+    <Disclaimer>
+      <em>
+        SFSU-Fulda Software Engineering Project CSC 648-848, Fall 2018. For
+        Demonstration Only
+      </em>
+    </Disclaimer>
+    <Nav />
+  </header>
 );
