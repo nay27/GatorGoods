@@ -31,8 +31,7 @@ class Users extends React.Component {
         <List>
           {this.state.users &&
             this.state.users.map(user => (
-              /* TODO add user's id as a key */
-              <li>
+              <li key={user.id}>
                 <strong>name:</strong>
                 {user.username}, <strong>email:</strong> {user.email}
               </li>
