@@ -1,23 +1,24 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const ErrorWrapper = styled.div`
-    background-color: #FA8072;
-    color: #960018;
-    padding: 0.5rem;
-    border-radius: 2rem;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+  background-color: #fa8072;
+  color: #960018;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 `;
 
-const Error = props => (
-    <>
-    { props.error && <ErrorWrapper>
-        {props.error.message}
-    </ErrorWrapper>
-    }
-    </>
-);
+const Error = props => {
+  if (props.error) return <ErrorWrapper>{props.error.message}</ErrorWrapper>;
+  else return null;
+};
+
+Error.propTypes = {
+  error: PropTypes.object
+};
 
 export default Error;

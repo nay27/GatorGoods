@@ -7,14 +7,21 @@ const Disclaimer = styled.header`
   color: white;
 `;
 
-export default () => (
-  <header className="sticky-top">
+const Sticky = styled.header`
+  position: sticky;
+  top: 0;
+`;
+
+const Header = props => (
+  <Sticky className="sticky-top">
     <Disclaimer>
       <em>
         SFSU-Fulda Software Engineering Project CSC 648-848, Fall 2018. For
         Demonstration Only
       </em>
     </Disclaimer>
-    <Nav />
-  </header>
+    <Nav category={props.query.category} query={props.query.query} />
+  </Sticky>
 );
+
+export default Header;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BACKEND_API_URL } from "../config";
+import apiFactory from "../api";
 import Error from "./Error";
 
 const List = styled.ul`
@@ -15,7 +15,8 @@ class Users extends React.Component {
   async componentDidMount() {
     this.setState({ loading: true });
     try {
-      const res = await fetch(`${BACKEND_API_URL}/users/`);
+      const api = apiFactory(fetch);
+      const res = await api("/users/");
       const data = await res.json();
       this.setState({ users: data.results, loading: false });
     } catch (error) {

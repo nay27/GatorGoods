@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Link from "next/link";
+import SearchBar from "./SearchBar";
 
 const NavWrapper = styled.nav`
-  background-color: #231161;
+  background-color: ${props => props.theme.purple};
   color: #eeeeee;
   margin-bottom: 2rem;
   padding: 1rem;
@@ -35,15 +36,15 @@ const NavWrapper = styled.nav`
   }
 
   .links a:hover {
-    background-color: #c99700;
+    background-color: ${props => props.theme.yellow};
     color: #eeeeee;
     text-decoration: none;
   }
 
   @media (min-width: 800px) {
     .nav-grid {
-      grid-template-columns: auto 1fr;
-      justify-items: unset;
+      grid-template-columns: repeat(3, auto);
+      justify-content: space-between;
     }
 
     .links {
@@ -51,6 +52,8 @@ const NavWrapper = styled.nav`
     }
   }
 `;
+
+const categories = [{ name: "All", value: 1 }, { name: "Books", value: 2 }];
 
 const Nav = props => (
   <NavWrapper>
@@ -62,6 +65,11 @@ const Nav = props => (
           height="50px"
         />
       </Link>
+      <SearchBar
+        categories={categories}
+        defaultCategory={props.category}
+        defaultQuery={props.query}
+      />
       <ul className="links">
         <li>
           <Link href="/">

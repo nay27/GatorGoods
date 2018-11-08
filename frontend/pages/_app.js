@@ -1,13 +1,8 @@
 import React from "react";
 import App, { Container } from "next/app";
-import styled from "styled-components";
-import Header from "../components/Header";
-
-const ContentContainer = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1rem;
-`;
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import Page from "../components/Page";
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -16,7 +11,7 @@ export default class MyApp extends App {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
-
+    pageProps.query = ctx.query;
     return { pageProps };
   }
 
@@ -25,10 +20,9 @@ export default class MyApp extends App {
 
     return (
       <Container>
-        <Header />
-        <ContentContainer>
+        <Page {...pageProps}>
           <Component {...pageProps} />
-        </ContentContainer>
+        </Page>
       </Container>
     );
   }
