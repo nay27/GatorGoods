@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import Router from "next/router";
 import SearchBar from "./SearchBar";
 
 const NavWrapper = styled.nav`
@@ -69,6 +70,14 @@ const Nav = props => (
         categories={categories}
         defaultCategory={props.category}
         defaultQuery={props.query}
+        onSearch={(category, query) =>
+          Router.push("/items", {
+            query: {
+              category,
+              query
+            }
+          })
+        }
       />
       <ul className="links">
         <li>
