@@ -28,12 +28,17 @@ describe("SearchBar component", () => {
   it("calls prop-provided method onSearch", () => {
     const handleSearch = jest.fn();
     const wrapper = mount(
-      <SearchBar categories={fakeCategories} onSearch={handleSearch} />
+      <SearchBar
+        categories={fakeCategories}
+        onSearch={handleSearch}
+        defaultQuery={"heyo"}
+      />
     );
     expect(wrapper.find("form").exists()).toBe(true);
     const form = wrapper.find("form").first();
     form.simulate("submit");
     expect(handleSearch.mock.calls[0][0]).toBe(0);
+    expect(handleSearch.mock.calls[0][1]).toBe("heyo");
   });
   it("can be passed initial selections", () => {
     const wrapper = shallow(

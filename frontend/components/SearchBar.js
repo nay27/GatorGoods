@@ -22,7 +22,7 @@ class SearchBar extends React.Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSearch(this.state.category);
+    this.props.onSearch(this.state.category, this.state.query);
   };
   render() {
     return (
