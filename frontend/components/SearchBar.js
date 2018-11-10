@@ -17,11 +17,13 @@ class SearchBar extends React.Component {
     query: this.props.defaultQuery || ""
   };
   handleChange = e => {
-    console.log(e);
+    // {[name]: value} will use an expression to calculate the object key
+    // here, it uses the event's target's name, which will be category or query
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
+    // call the function that the parent provided, inversion of control
     this.props.onSearch(this.state.category, this.state.query);
   };
   render() {

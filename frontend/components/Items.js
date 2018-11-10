@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Item from "./Item";
 
+// a set of fake items to use until the backend is implemented
 const fakeItems = [
   {
     id: 1,
@@ -50,7 +51,10 @@ const fakeItems = [
 
 const ItemsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  }
 `;
 
 const apiResponse = Promise.resolve(fakeItems);

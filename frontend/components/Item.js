@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { formatPrice } from "../utils";
 
 const ItemWrapper = styled.div`
@@ -8,6 +9,7 @@ const ItemWrapper = styled.div`
   padding: 1rem;
   margin: 1rem;
 
+  /* on small screens, show elements in a single column */
   display: grid;
   grid-template-areas:
     "title"
@@ -15,6 +17,8 @@ const ItemWrapper = styled.div`
     "right";
   text-align: center;
   justify-content: center;
+
+  /* on larger screens, show items with image on the left */
   @media (min-width: 600px) {
     text-align: left;
     grid-template-columns: minmax(100px, 400px) 1fr;
@@ -80,5 +84,15 @@ const Item = props => (
     </div>
   </ItemWrapper>
 );
+
+Item.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    description: PropTypes.description,
+    category: PropTypes.number,
+    image: PropTypes.string
+  }).isRequired
+};
 
 export default Item;
