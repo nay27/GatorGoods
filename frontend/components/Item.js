@@ -91,6 +91,7 @@ Item.propTypes = {
     title: PropTypes.string,
     description: PropTypes.description,
     category: PropTypes.number,
+    price: PropTypes.number,
     image: PropTypes.string
   }).isRequired
 };
