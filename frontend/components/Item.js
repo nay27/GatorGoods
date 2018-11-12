@@ -66,29 +66,31 @@ const ItemWrapper = styled.div`
 `;
 
 const Item = props => (
-  <ItemWrapper>
-    <Link href= {"/items?id=" + props.item.id} >
-      <div>
-        <h1>{props.item.title}</h1>
-        <h3 className="title">{props.item.title}</h3>
-        <div className="image-wrapper">
-          <img
+  <Link
+    href={{
+      pathname: "items/",
+      query: { id: props.item.id }
+    }}
+  >
+    <ItemWrapper>
+      <h3 className="title">{props.item.title}</h3>
+      <div className="image-wrapper">
+        <img
           src={props.item.image}
           alt={props.item.title}
           className="img-fluid"
-          />
-        </div>
-        <div className="right">
-          <small>category: {props.item.category}</small>
-          <p>{props.item.description}</p>
-          <div className="horizontal">
-            <button className="btn btn-outline-primary">Contact Seller</button>
-            <p className="price">{formatPrice(props.item.price)}</p>
-          </div>
+        />
+      </div>
+      <div className="right">
+        <small>category: {props.item.category}</small>
+        <p>{props.item.description}</p>
+        <div className="horizontal">
+          <button className="btn btn-outline-primary">Contact Seller</button>
+          <p className="price">{formatPrice(props.item.price)}</p>
         </div>
       </div>
-    </Link>
-  </ItemWrapper>
+    </ItemWrapper>
+  </Link>
 );
 
 Item.propTypes = {
