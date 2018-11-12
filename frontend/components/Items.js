@@ -3,6 +3,7 @@ import Item from "./Item";
 
 const fakeItems = [
   {
+    id: 0,
     title: "Shoes",
     description: "Some old sneakers",
     price: 1200,
@@ -10,6 +11,7 @@ const fakeItems = [
     image: "/static/images/shoes.jpg"
   },
   {
+    id: 1,
     title: "Bio 100 Book",
     description: "Book needed for bio 100",
     price: 5000,
@@ -17,6 +19,7 @@ const fakeItems = [
     image: "/static/images/sticker_logo.png"
   },
   {
+    id: 2,
     title: "Desk",
     description: "My old desk",
     price: 2600,
@@ -24,6 +27,7 @@ const fakeItems = [
     image: "/static/images/sticker_logo.png"
   },
   {
+    id: 3,
     title: "Phone",
     description: "idk what phone",
     price: 50000,
@@ -31,6 +35,7 @@ const fakeItems = [
     image: "/static/images/sticker_logo.png"
   },
   {
+    id: 4,
     title: "Jacket",
     description: "a clothing item",
     price: 2000,

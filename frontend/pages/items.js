@@ -1,3 +1,3 @@
-import Items from "../components/Items";
+import ItemDetail from "../components/ItemDetail";
 
-export default () => <Items />;
+export default () => <ItemDetail />;

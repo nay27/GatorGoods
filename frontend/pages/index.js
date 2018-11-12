@@ -1,3 +1,3 @@
-import Users from "../components/Users";
+import Items from "../components/Items";
 
-export default () => <Users />;
+export default () => <Items />;
