@@ -18,7 +18,7 @@ const Error = props => {
 };
 
 Error.propTypes = {
-  error: PropTypes.object
+  error: PropTypes.shape({ message: PropTypes.string })
 };
 
 export default Error;
