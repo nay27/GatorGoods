@@ -5,7 +5,8 @@ const theme = {
   purple: "#231161",
   text: "#eeeeee",
   yellow: "#c99700",
-  maxWidth: "1000px"
+  maxWidth: "1000px",
+  cardBS: "0 0 3px lightgray"
 };
 
 const ContentContainer = styled.div`

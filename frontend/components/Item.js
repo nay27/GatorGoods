@@ -5,7 +5,7 @@ import { formatPrice } from "../utils";
 
 const ItemWrapper = styled.div`
   border: 2px solid lightgray;
-  box-shadow: 0 0 3px lightgray;
+  box-shadow: ${props => props.theme.cardBS};
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1rem;
