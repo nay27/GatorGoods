@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Item from "./Item";
 
+// a set of fake items to use until the backend is implemented
 const fakeItems = [
   {
-    id: 0,
+    id: 1,
     title: "Shoes",
     description: "Some old sneakers",
     price: 1200,
@@ -11,44 +12,48 @@ const fakeItems = [
     image: "/static/images/shoes.jpg"
   },
   {
-    id: 1,
-    title: "Bio 100 Book",
-    description: "Book needed for bio 100",
+    id: 2,
+    title: "Bread",
+    description: "Une baguette de qualité",
     price: 5000,
     category: 1,
-    image: "/static/images/sticker_logo.png"
-  },
-  {
-    id: 2,
-    title: "Desk",
-    description: "My old desk",
-    price: 2600,
-    category: 3,
-    image: "/static/images/sticker_logo.png"
+    image: "/static/images/bread.jpg"
   },
   {
     id: 3,
+    title: "Desk",
+    description: `This is gonna be a long description.
+    I need a long description so that I can see if my css is working
+    properly. The css for this page has been kind complicated so I really really hope this works.
+    Again, just a long description, please move on.
+    Yay! it works as expected`,
+    price: 2600,
+    category: 3,
+    image: "/static/images/desk.jpg"
+  },
+  {
+    id: 4,
     title: "Phone",
     description: "idk what phone",
     price: 50000,
     category: 4,
-    image: "/static/images/sticker_logo.png"
+    image: "/static/images/phone.jpg"
   },
   {
-    id: 4,
+    id: 5,
     title: "Jacket",
     description: "a clothing item",
-    price: 2000,
+    price: 2026,
     category: 2,
-    image: "/static/images/sticker_logo.png"
+    image: "/static/images/jacket.jpg"
   }
 ];
 
 const ItemsWrapper = styled.div`
   display: grid;
-
-  @media (min-width: 800px) {
-    grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   }
 `;
 
@@ -69,7 +74,8 @@ class Items extends React.Component {
     return (
       <ItemsWrapper>
         {this.state.loading && <p>Loading...</p>}
-        {this.state.items && this.state.items.map(item => <Item item={item} />)}
+        {this.state.items &&
+          this.state.items.map(item => <Item item={item} key={item.id} />)}
       </ItemsWrapper>
     );
   }

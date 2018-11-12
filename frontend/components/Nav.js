@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import Router from "next/router";
 import SearchBar from "./SearchBar";
 
 const NavWrapper = styled.nav`
@@ -51,6 +52,10 @@ const NavWrapper = styled.nav`
       justify-content: flex-end;
     }
   }
+
+  .image {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const categories = [{ name: "All", value: 1 }, { name: "Books", value: 2 }];
@@ -63,12 +68,21 @@ const Nav = props => (
           src="/static/images/sticker_logo.png"
           alt="Gator Goods Logo"
           height="50px"
+          className="image"
         />
       </Link>
       <SearchBar
         categories={categories}
         defaultCategory={props.category}
         defaultQuery={props.query}
+        onSearch={(category, query) =>
+          Router.push("/items", {
+            query: {
+              category,
+              query
+            }
+          })
+        }
       />
       <ul className="links">
         <li>
