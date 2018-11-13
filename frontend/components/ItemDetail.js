@@ -14,7 +14,6 @@ const ItemWrapper = styled.div`
   .price {
     color: green;
     font-weight: 600;
-    padding-left: 0.5rem;
   }
 `;
 
@@ -47,7 +46,7 @@ class ItemDetail extends React.Component {
 
         <button className="btn btn-outline-primary">Contact Seller</button>
 
-        <p>Catagory: {this.state.item && this.state.item.category}</p>
+        <p>Category: {this.state.item && this.state.item.category}</p>
 
         <div>
           <h6>Price: </h6>
@@ -55,7 +54,7 @@ class ItemDetail extends React.Component {
             {formatPrice(this.state.item && this.state.item.price)}
           </p>
         </div>
-        <h3>Discription: </h3>
+        <h3>Description: </h3>
         <p>{this.state.item && this.state.item.description}</p>
       </ItemWrapper>
     );
