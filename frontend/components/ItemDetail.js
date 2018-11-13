@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Item from "./Item";
+import { formatPrice } from "../utils";
+
 
 const fakeItem = {
     id: 0,
@@ -30,6 +32,18 @@ class ItemDetail extends React.Component {
           {this.state.loading && <p>Loading...</p>}
           {this.state.item && this.state.item.title}
         </h1>
+
+        <img
+                  src={this.state.item && this.state.item.image}
+                  alt={this.state.item && this.state.item.title}
+                  >
+        </img>
+        <p>
+        <p>{formatPrice(this.state.item &&this.state.item.price)}
+            <button>Contact Seller</button>
+        </p>
+          {this.state.item && this.state.item.description}
+        </p>
       </div>
     );
   }
