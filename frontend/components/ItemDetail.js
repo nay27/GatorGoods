@@ -5,10 +5,12 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 
 const ItemWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr minmax(100px, 400px);
   border: 2px solid lightgray;
   box-shadow: 0 0 3px lightgray;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 2rem;
   margin: 1rem;
 
   .price {
@@ -34,33 +36,34 @@ class ItemDetail extends React.Component {
   render() {
     return (
       <ItemWrapper>
-        <h1 align="center">{this.state.item && this.state.item.title}</h1>
+        <div className="left">
+          <h1>{this.state.item && this.state.item.title}</h1>
+          <Link
+            href={{
+              pathname: "/message",
+              query: { id: this.props.id }
+            }}
+          >
+            <a className="btn btn-outline-primary">Contact Seller</a>
+          </Link>
+          <p>Category: {this.state.item && this.state.item.category}</p>
 
-        <div align="center">
+          <div>
+            <h6>Price: </h6>
+            <p className="price">
+              {formatPrice(this.state.item && this.state.item.price)}
+            </p>
+          </div>
+          <h3>Description: </h3>
+          <p>{this.state.item && this.state.item.description}</p>
+        </div>
+        <div className="imageWrapper">
           <img
-            align="center"
+            className="img-fluid"
             src={this.state.item && this.state.item.image}
             alt={this.state.item && this.state.item.title}
           />
         </div>
-        <Link
-          href={{
-            pathname: "/message",
-            query: { id: this.props.id }
-          }}
-        >
-          <a className="btn btn-outline-primary">Contact Seller</a>
-        </Link>
-        <p>Category: {this.state.item && this.state.item.category}</p>
-
-        <div>
-          <h6>Price: </h6>
-          <p className="price" align="left">
-            {formatPrice(this.state.item && this.state.item.price)}
-          </p>
-        </div>
-        <h3>Description: </h3>
-        <p>{this.state.item && this.state.item.description}</p>
       </ItemWrapper>
     );
   }
