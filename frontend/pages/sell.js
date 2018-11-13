@@ -4,6 +4,10 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 
 const SellPageWrapper = styled.div`
+    .div {
+        justify-content: center;
+        align-items: center;
+    }
     .select {
         border-radius: 0.5rem;
         width: "48";
@@ -125,6 +129,7 @@ class SellPage extends React.Component {
 
     return(
     <SellPageWrapper>
+    <div className="div">
     <h1> Sell Item </h1>
     <h3> Title* </h3>
     <input className="title" type="text" placeholder="Title Text"/>
@@ -154,6 +159,7 @@ class SellPage extends React.Component {
      <Link href={{pathname:"/"}}>
     <input className="submit" type="submit" value="Post" onClick={()=> {alert("Your post is awaiting approval by the Moderator.")}} />
     </Link>
+    </div>
     </SellPageWrapper>
     )
     }
