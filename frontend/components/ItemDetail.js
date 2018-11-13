@@ -14,7 +14,6 @@ const ItemWrapper = styled.div`
   .price {
     color: green;
     font-weight: 600;
-    padding-left: 0.5rem;
   }
 `;
 
