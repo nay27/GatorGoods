@@ -95,7 +95,14 @@ const Item = props => (
         <small>category: {props.item.category}</small>
         <p>{props.item.description}</p>
         <div className="horizontal">
-          <button className="btn btn-outline-primary">Contact Seller</button>
+        <Link
+          href={{
+          pathname: "message/",
+          query: { id: props.item.id }
+          }}
+          >
+            <button className="btn btn-outline-primary">Contact Seller</button>
+          </Link>
           <p className="price">{formatPrice(props.item.price)}</p>
         </div>
       </div>

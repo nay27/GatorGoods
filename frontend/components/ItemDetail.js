@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { formatPrice } from "../utils";
 import { fakeItems } from "./Items";
+import Link from "next/link";
+import PropTypes from "prop-types";
 
 const ItemWrapper = styled.div`
   border: 2px solid lightgray;
@@ -43,9 +45,14 @@ class ItemDetail extends React.Component {
           alt={this.state.item && this.state.item.title}
           />
         </div>
-
-        <button className="btn btn-outline-primary">Contact Seller</button>
-
+        <Link
+          href={{
+          pathname: "/message/",
+          query: { id: this.state.item && this.state.item.id}
+          }}
+        >
+            <button className="btn btn-outline-primary">Contact Seller</button>
+        </Link>
         <p>
           Catagory: {this.state.item && this.state.item.category}
         </p>
