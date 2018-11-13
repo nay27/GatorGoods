@@ -18,6 +18,7 @@ class Signin extends React.Component {
         error: { message: "The email and/or password fields cannot be blank" },
         loading: false
       });
+      return;
     }
     // fakes api call time to test ui
     this.setState({ loading: true }, () => {
