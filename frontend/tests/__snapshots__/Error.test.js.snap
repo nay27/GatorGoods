@@ -70,7 +70,8 @@ ShallowWrapper {
         "componentId": "Error__ErrorWrapper-a71vg1-0",
         "isStatic": true,
         "rules": Array [
-          "background-color:#fa8072;color:#960018;padding:0.5rem;border-radius:2rem;text-align:center;display:flex;justify-content:center;align-content:center;",
+          "background-color:#409364;color:white;padding:0.5rem;border-radius:2rem;text-align:center;display:flex;justify-content:center;align-content:center;",
+          "background-color:#fa8072;color:#960018;",
         ],
       },
       "displayName": "Error__ErrorWrapper",
@@ -99,7 +100,8 @@ ShallowWrapper {
           "componentId": "Error__ErrorWrapper-a71vg1-0",
           "isStatic": true,
           "rules": Array [
-            "background-color:#fa8072;color:#960018;padding:0.5rem;border-radius:2rem;text-align:center;display:flex;justify-content:center;align-content:center;",
+            "background-color:#409364;color:white;padding:0.5rem;border-radius:2rem;text-align:center;display:flex;justify-content:center;align-content:center;",
+            "background-color:#fa8072;color:#960018;",
           ],
         },
         "displayName": "Error__ErrorWrapper",

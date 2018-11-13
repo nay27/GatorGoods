@@ -49,9 +49,7 @@ export const fakeItems = [
   }
 ];
 
-const ItemsWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+const ItemsWrapper = styled(Grid)`
   @media (min-width: 600px) {
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   }
