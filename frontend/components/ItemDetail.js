@@ -44,10 +44,15 @@ class ItemDetail extends React.Component {
             alt={this.state.item && this.state.item.title}
           />
         </div>
-
-        <button className="btn btn-outline-primary">Contact Seller</button>
-
-        <p>Catagory: {this.state.item && this.state.item.category}</p>
+        <Link
+          href={{
+            pathname: "/message",
+            query: { id: this.props.id }
+          }}
+        >
+          <a className="btn btn-outline-primary">Contact Seller</a>
+        </Link>
+        <p>Category: {this.state.item && this.state.item.category}</p>
 
         <div>
           <h6>Price: </h6>
@@ -55,7 +60,7 @@ class ItemDetail extends React.Component {
             {formatPrice(this.state.item && this.state.item.price)}
           </p>
         </div>
-        <h3>Discription: </h3>
+        <h3>Description: </h3>
         <p>{this.state.item && this.state.item.description}</p>
       </ItemWrapper>
     );
