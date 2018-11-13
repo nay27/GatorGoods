@@ -68,7 +68,6 @@ class Items extends React.Component {
   async componentDidMount() {
     this.setState({ loading: true });
     const items = await apiResponse;
-    console.log(items);
     this.setState({ loading: false, items: items });
   }
   render() {

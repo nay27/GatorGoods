@@ -2,6 +2,20 @@ import styled from "styled-components";
 import { formatPrice } from "../utils";
 import { fakeItems } from "./Items";
 
+const ItemWrapper = styled.div`
+  border: 2px solid lightgray;
+  box-shadow: 0 0 3px lightgray;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem;
+
+  .price {
+    color: green;
+    font-weight: 600;
+    padding-left: 0.5rem;
+  }
+`;
+
 class ItemDetail extends React.Component {
   state = {
     loading: false,
@@ -17,24 +31,32 @@ class ItemDetail extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h1>
-          {this.state.loading && <p>Loading...</p>}
+      <ItemWrapper>
+        <h1 align="center">
           {this.state.item && this.state.item.title}
         </h1>
 
-        <img
-                  src={this.state.item && this.state.item.image}
-                  alt={this.state.item && this.state.item.title}
-                  >
-        </img>
+        <div align="center">
+          <img
+          align="center"
+          src={this.state.item && this.state.item.image}
+          alt={this.state.item && this.state.item.title}
+          />
+        </div>
+
+        <button className="btn btn-outline-primary">Contact Seller</button>
+
         <p>
-        <p>{formatPrice(this.state.item &&this.state.item.price)}
-            <button>Contact Seller</button>
+          Catagory: {this.state.item && this.state.item.category}
         </p>
-          {this.state.item && this.state.item.description}
-        </p>
-      </div>
+
+        <div>
+          <h6>Price: </h6>
+          <p className="price" align="left">{formatPrice(this.state.item && this.state.item.price)}</p>
+        </div>
+          <h3>Discription: </h3>
+          <p>{this.state.item && this.state.item.description}</p>
+      </ItemWrapper>
     );
   }
 }

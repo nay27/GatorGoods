@@ -31,6 +31,7 @@ const ItemWrapper = styled.div`
 
   .title {
     grid-area: title;
+
   }
 
   .right {
@@ -66,21 +67,30 @@ const ItemWrapper = styled.div`
 `;
 
 const Item = props => (
-  <Link
-    href={{
-      pathname: "items/",
-      query: { id: props.item.id }
-    }}
-  >
+
     <ItemWrapper>
-      <h3 className="title">{props.item.title}</h3>
-      <div className="image-wrapper">
-        <img
-          src={props.item.image}
-          alt={props.item.title}
-          className="img-fluid"
-        />
-      </div>
+      <Link
+          href={{
+          pathname: "items/",
+          query: { id: props.item.id }
+          }}
+      >
+         <h3 className="title" class="center">{props.item.title}</h3>
+      </Link>
+      <Link
+          href={{
+          pathname: "items/",
+          query: { id: props.item.id }
+          }}
+      >
+        <div className="image-wrapper">
+          <img
+            src={props.item.image}
+            alt={props.item.title}
+            className="img-fluid"
+          />
+        </div>
+      </Link>
       <div className="right">
         <small>category: {props.item.category}</small>
         <p>{props.item.description}</p>
@@ -90,7 +100,7 @@ const Item = props => (
         </div>
       </div>
     </ItemWrapper>
-  </Link>
+
 );
 
 Item.propTypes = {
