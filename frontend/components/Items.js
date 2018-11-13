@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import Item from "./Item";
-import Grid from "./styles/Grid";
 
 // a set of fake items to use until the backend is implemented
-const fakeItems = [
+export const fakeItems = [
   {
     id: 1,
     title: "Shoes",

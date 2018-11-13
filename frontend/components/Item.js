@@ -66,14 +66,21 @@ const ItemWrapper = styled.div`
 `;
 
 const Item = props => (
-  <Link
-    href={{
-      pathname: "items/",
-      query: { id: props.item.id }
-    }}
-  >
-    <ItemWrapper>
+  <ItemWrapper>
+    <Link
+      href={{
+        pathname: "items/",
+        query: { id: props.item.id }
+      }}
+    >
       <h3 className="title">{props.item.title}</h3>
+    </Link>
+    <Link
+      href={{
+        pathname: "items/",
+        query: { id: props.item.id }
+      }}
+    >
       <div className="image-wrapper">
         <img
           src={props.item.image}
@@ -81,16 +88,23 @@ const Item = props => (
           className="img-fluid"
         />
       </div>
-      <div className="right">
-        <small>category: {props.item.category}</small>
-        <p>{props.item.description}</p>
-        <div className="horizontal">
-          <button className="btn btn-outline-primary">Contact Seller</button>
-          <p className="price">{formatPrice(props.item.price)}</p>
-        </div>
+    </Link>
+    <div className="right">
+      <small>category: {props.item.category}</small>
+      <p>{props.item.description}</p>
+      <div className="horizontal">
+        <Link
+          href={{
+            pathname: "message/",
+            query: { id: props.item.id }
+          }}
+        >
+          <a className="btn btn-outline-primary">Contact Seller</a>
+        </Link>
+        <p className="price">{formatPrice(props.item.price)}</p>
       </div>
-    </ItemWrapper>
-  </Link>
+    </div>
+  </ItemWrapper>
 );
 
 Item.propTypes = {
