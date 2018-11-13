@@ -31,7 +31,6 @@ const ItemWrapper = styled.div`
 
   .title {
     grid-area: title;
-
   }
 
   .right {
@@ -67,47 +66,45 @@ const ItemWrapper = styled.div`
 `;
 
 const Item = props => (
-
-    <ItemWrapper>
-      <Link
-          href={{
-          pathname: "items/",
-          query: { id: props.item.id }
-          }}
-      >
-         <h3 className="title" class="center">{props.item.title}</h3>
-      </Link>
-      <Link
-          href={{
-          pathname: "items/",
-          query: { id: props.item.id }
-          }}
-      >
-        <div className="image-wrapper">
-          <img
-            src={props.item.image}
-            alt={props.item.title}
-            className="img-fluid"
-          />
-        </div>
-      </Link>
-      <div className="right">
-        <small>category: {props.item.category}</small>
-        <p>{props.item.description}</p>
-        <div className="horizontal">
+  <ItemWrapper>
+    <Link
+      href={{
+        pathname: "items/",
+        query: { id: props.item.id }
+      }}
+    >
+      <h3 className="title">{props.item.title}</h3>
+    </Link>
+    <Link
+      href={{
+        pathname: "items/",
+        query: { id: props.item.id }
+      }}
+    >
+      <div className="image-wrapper">
+        <img
+          src={props.item.image}
+          alt={props.item.title}
+          className="img-fluid"
+        />
+      </div>
+    </Link>
+    <div className="right">
+      <small>category: {props.item.category}</small>
+      <p>{props.item.description}</p>
+      <div className="horizontal">
         <Link
           href={{
-          pathname: "message/",
-          query: { id: props.item.id }
+            pathname: "message/",
+            query: { id: props.item.id }
           }}
-          >
-            <button className="btn btn-outline-primary">Contact Seller</button>
-          </Link>
-          <p className="price">{formatPrice(props.item.price)}</p>
-        </div>
+        >
+          <a className="btn btn-outline-primary">Contact Seller</a>
+        </Link>
+        <p className="price">{formatPrice(props.item.price)}</p>
       </div>
-    </ItemWrapper>
-
+    </div>
+  </ItemWrapper>
 );
 
 Item.propTypes = {
