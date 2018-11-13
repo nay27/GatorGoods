@@ -1,15 +1,10 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import Message from "./styles/Message";
 
-const ErrorWrapper = styled.div`
+const ErrorWrapper = styled(Message)`
   background-color: #fa8072;
   color: #960018;
-  padding: 0.5rem;
-  border-radius: 2rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-content: center;
 `;
 
 const Error = props => {
@@ -18,7 +13,7 @@ const Error = props => {
 };
 
 Error.propTypes = {
-  error: PropTypes.object
+  error: PropTypes.shape({ message: PropTypes.string })
 };
 
 export default Error;

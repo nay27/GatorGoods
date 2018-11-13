@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Item from "./Item";
+import Grid from "./styles/Grid";
 
 // a set of fake items to use until the backend is implemented
 export const fakeItems = [
@@ -49,9 +50,7 @@ export const fakeItems = [
   }
 ];
 
-const ItemsWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+const ItemsWrapper = styled(Grid)`
   @media (min-width: 600px) {
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   }
