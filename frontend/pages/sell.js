@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import Link from "next/link";
+import PropTypes from "prop-types";
 
 const SellPageWrapper = styled.div`
     .select {
@@ -143,7 +144,9 @@ class SellPage extends React.Component {
     <textarea rows="5" cols="55" className="description"></textarea>
     <h3> Image* </h3>
     <input type="file"/>
-    <h3> </h3>
+    <div>
+    <h6> * Required fields. </h6>
+    </div>
     <Link href={{pathname:"/"}}>
     <input className="cancel" type="button" value="Cancel"/>
     </Link>
@@ -154,6 +157,6 @@ class SellPage extends React.Component {
     </SellPageWrapper>
     )
     }
-}
+};
 
 export default SellPage;
