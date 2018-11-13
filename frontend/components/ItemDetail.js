@@ -19,6 +19,9 @@ const ItemWrapper = styled.div`
 `;
 
 class ItemDetail extends React.Component {
+  static propTypes = {
+    id: PropTypes.number.isRequired
+  };
   state = {
     loading: false,
     item: null,
@@ -26,9 +29,7 @@ class ItemDetail extends React.Component {
   };
   async componentDidMount() {
     this.setState({ loading: true });
-    const params = new URL(document.location).searchParams;
-    const id = parseInt(params.get("id"));
-    const item = fakeItems.filter(item => item.id === id);
+    const item = fakeItems.filter(item => item.id === this.props.id);
     this.setState({ loading: false, item: item[0] });
   }
   render() {

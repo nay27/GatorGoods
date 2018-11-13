@@ -31,7 +31,7 @@ ShallowWrapper {
         <Link
           href={
             Object {
-              "pathname": "items/",
+              "pathname": "/items",
               "query": Object {
                 "id": undefined,
               },
@@ -47,7 +47,7 @@ ShallowWrapper {
         <Link
           href={
             Object {
-              "pathname": "items/",
+              "pathname": "/items",
               "query": Object {
                 "id": undefined,
               },
@@ -80,7 +80,7 @@ ShallowWrapper {
             <Link
               href={
                 Object {
-                  "pathname": "message/",
+                  "pathname": "/message",
                   "query": Object {
                     "id": undefined,
                   },
@@ -115,7 +115,7 @@ ShallowWrapper {
             Boots
           </h3>,
           "href": Object {
-            "pathname": "items/",
+            "pathname": "/items",
             "query": Object {
               "id": undefined,
             },
@@ -151,7 +151,7 @@ ShallowWrapper {
             />
           </div>,
           "href": Object {
-            "pathname": "items/",
+            "pathname": "/items",
             "query": Object {
               "id": undefined,
             },
@@ -207,7 +207,7 @@ ShallowWrapper {
               <Link
                 href={
                   Object {
-                    "pathname": "message/",
+                    "pathname": "/message",
                     "query": Object {
                       "id": undefined,
                     },
@@ -268,7 +268,7 @@ ShallowWrapper {
                 <Link
                   href={
                     Object {
-                      "pathname": "message/",
+                      "pathname": "/message",
                       "query": Object {
                         "id": undefined,
                       },
@@ -302,7 +302,7 @@ ShallowWrapper {
                     Contact Seller
                   </a>,
                   "href": Object {
-                    "pathname": "message/",
+                    "pathname": "/message",
                     "query": Object {
                       "id": undefined,
                     },
@@ -373,7 +373,7 @@ ShallowWrapper {
           <Link
             href={
               Object {
-                "pathname": "items/",
+                "pathname": "/items",
                 "query": Object {
                   "id": undefined,
                 },
@@ -389,7 +389,7 @@ ShallowWrapper {
           <Link
             href={
               Object {
-                "pathname": "items/",
+                "pathname": "/items",
                 "query": Object {
                   "id": undefined,
                 },
@@ -422,7 +422,7 @@ ShallowWrapper {
               <Link
                 href={
                   Object {
-                    "pathname": "message/",
+                    "pathname": "/message",
                     "query": Object {
                       "id": undefined,
                     },
@@ -457,7 +457,7 @@ ShallowWrapper {
               Boots
             </h3>,
             "href": Object {
-              "pathname": "items/",
+              "pathname": "/items",
               "query": Object {
                 "id": undefined,
               },
@@ -493,7 +493,7 @@ ShallowWrapper {
               />
             </div>,
             "href": Object {
-              "pathname": "items/",
+              "pathname": "/items",
               "query": Object {
                 "id": undefined,
               },
@@ -549,7 +549,7 @@ ShallowWrapper {
                 <Link
                   href={
                     Object {
-                      "pathname": "message/",
+                      "pathname": "/message",
                       "query": Object {
                         "id": undefined,
                       },
@@ -610,7 +610,7 @@ ShallowWrapper {
                   <Link
                     href={
                       Object {
-                        "pathname": "message/",
+                        "pathname": "/message",
                         "query": Object {
                           "id": undefined,
                         },
@@ -644,7 +644,7 @@ ShallowWrapper {
                       Contact Seller
                     </a>,
                     "href": Object {
-                      "pathname": "message/",
+                      "pathname": "/message",
                       "query": Object {
                         "id": undefined,
                       },

@@ -65,47 +65,48 @@ const ItemWrapper = styled.div`
   }
 `;
 
-const Item = props => (
-  <ItemWrapper>
-    <Link
-      href={{
-        pathname: "items/",
-        query: { id: props.item.id }
-      }}
-    >
-      <h3 className="title">{props.item.title}</h3>
-    </Link>
-    <Link
-      href={{
-        pathname: "items/",
-        query: { id: props.item.id }
-      }}
-    >
-      <div className="image-wrapper">
-        <img
-          src={props.item.image}
-          alt={props.item.title}
-          className="img-fluid"
-        />
+const Item = props =>
+  console.log(props) || (
+    <ItemWrapper>
+      <Link
+        href={{
+          pathname: "/items",
+          query: { id: props.item.id }
+        }}
+      >
+        <h3 className="title">{props.item.title}</h3>
+      </Link>
+      <Link
+        href={{
+          pathname: "/items",
+          query: { id: props.item.id }
+        }}
+      >
+        <div className="image-wrapper">
+          <img
+            src={props.item.image}
+            alt={props.item.title}
+            className="img-fluid"
+          />
+        </div>
+      </Link>
+      <div className="right">
+        <small>category: {props.item.category}</small>
+        <p>{props.item.description}</p>
+        <div className="horizontal">
+          <Link
+            href={{
+              pathname: "/message",
+              query: { id: props.item.id }
+            }}
+          >
+            <a className="btn btn-outline-primary">Contact Seller</a>
+          </Link>
+          <p className="price">{formatPrice(props.item.price)}</p>
+        </div>
       </div>
-    </Link>
-    <div className="right">
-      <small>category: {props.item.category}</small>
-      <p>{props.item.description}</p>
-      <div className="horizontal">
-        <Link
-          href={{
-            pathname: "message/",
-            query: { id: props.item.id }
-          }}
-        >
-          <a className="btn btn-outline-primary">Contact Seller</a>
-        </Link>
-        <p className="price">{formatPrice(props.item.price)}</p>
-      </div>
-    </div>
-  </ItemWrapper>
-);
+    </ItemWrapper>
+  );
 
 Item.propTypes = {
   item: PropTypes.shape({
