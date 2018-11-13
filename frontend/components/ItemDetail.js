@@ -1,18 +1,6 @@
 import styled from "styled-components";
-import Item from "./Item";
 import { formatPrice } from "../utils";
-
-
-const fakeItem = {
-    id: 0,
-    title: "Shoes",
-    description: "Some old sneakers",
-    price: 1200,
-    category: 2,
-    image: "/static/images/shoes.jpg"
-}
-
-const apiResponse = Promise.resolve(fakeItem);
+import { fakeItems } from "./Items";
 
 class ItemDetail extends React.Component {
   state = {
@@ -22,8 +10,10 @@ class ItemDetail extends React.Component {
   };
   async componentDidMount() {
     this.setState({ loading: true });
-    const item = await apiResponse;
-    this.setState({ loading: false, item: item });
+    const params = (new URL(document.location)).searchParams;
+    const id = parseInt(params.get("id"));
+    const item = fakeItems.filter(item => item.id === id);
+    this.setState({ loading: false, item: item[0] });
   }
   render() {
     return (

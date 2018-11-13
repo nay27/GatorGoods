@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Item from "./Item";
 
 // a set of fake items to use until the backend is implemented
-const fakeItems = [
+export const fakeItems = [
   {
     id: 1,
     title: "Shoes",
@@ -68,6 +68,7 @@ class Items extends React.Component {
   async componentDidMount() {
     this.setState({ loading: true });
     const items = await apiResponse;
+    console.log(items);
     this.setState({ loading: false, items: items });
   }
   render() {
