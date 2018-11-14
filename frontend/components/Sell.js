@@ -1,4 +1,32 @@
 import Form from "./styles/Form";
+import Link from "next/link";
+import styled from "styled-components";
+
+const ButtonWrapper = styled.div`
+    .cancel{
+         width:178px;
+         height:50px;
+         background-color:#ff3232 ;
+         border-radius:5px;
+         font-weight:bold;
+         color:white;
+    }
+   .divider {
+        width:50px;
+        height:auto;
+        display:inline-block;
+    }
+      .submit{
+             padding: "20px";
+             width:178px;
+             height:50px;
+             background-color: #006400 ;
+             padding:12px;
+             border-radius:5px;
+             font-weight:bold;
+             color:white;
+        }
+`;
 
 class Sell extends React.Component {
   state = {
@@ -27,10 +55,12 @@ class Sell extends React.Component {
             Category*
             <br />
             <select name="category">
+              <option value="0">Select a category...</option>
               <option value="1">Furniture</option>
               <option value="2">Electronics</option>
               <option value="3">Clothing</option>
               <option value="4">Books</option>
+              <option value="5">Miscellaneous</option>
             </select>
           </label>
           <label htmlFor="Price">
@@ -42,8 +72,20 @@ class Sell extends React.Component {
             <input type="text" placeholder="Description" />
           </label>
           <label htmlFor="image">
-            Image <input type="file" name="image" />
+            Image* <input type="file" name="image" />
           </label>
+           <div>
+              <h6> * Required fields. </h6>
+           </div>
+          <ButtonWrapper>
+            <Link href={{pathname:"/"}}>
+                <input className="submit" type="submit" value="Post" onClick={()=> {alert("Your post is awaiting approval by the Moderator.")}} />
+            </Link>
+            <div className="divider"/>
+            <Link href={{pathname:"/"}}>
+                <input className="cancel" type="button" value="Cancel"/>
+            </Link>
+           </ButtonWrapper>
         </fieldset>
       </Form>
     );

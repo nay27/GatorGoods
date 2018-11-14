@@ -29,6 +29,15 @@ const Form = styled.form `
     select {
       border-radius: 0; 
     }
+
+   cancel{
+         width:178px;
+         height:50px;
+         background-color:#ff3232 ;
+         border-radius:5px;
+         font-weight:bold;
+         color:white;
+    }
   }
 `;
 
