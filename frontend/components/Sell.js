@@ -1,5 +1,33 @@
 import Centered from "./styles/Centered";
 import Form from "./styles/Form";
+import Link from "next/link";
+import styled from "styled-components";
+
+const ButtonWrapper = styled.div`
+  .cancel {
+    width: 178px;
+    height: 50px;
+    background-color: #ff3232;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+  }
+  .divider {
+    width: 50px;
+    height: auto;
+    display: inline-block;
+  }
+  .submit {
+    padding: "20px";
+    width: 178px;
+    height: 50px;
+    background-color: #006400;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+  }
+`;
 
 class Sell extends React.Component {
   state = {
@@ -29,10 +57,12 @@ class Sell extends React.Component {
               Category*
               <br />
               <select name="category">
+                <option value="0">Select a category...</option>
                 <option value="1">Furniture</option>
                 <option value="2">Electronics</option>
                 <option value="3">Clothing</option>
                 <option value="4">Books</option>
+                <option value="5">Miscellaneous</option>
               </select>
             </label>
             <label htmlFor="Price">

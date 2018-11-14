@@ -35,6 +35,15 @@ const Form = styled.form `
       display: block;
       width: 100%;
     }
+
+   cancel{
+         width:178px;
+         height:50px;
+         background-color:#ff3232 ;
+         border-radius:5px;
+         font-weight:bold;
+         color:white;
+    }
   }
 `;
 
