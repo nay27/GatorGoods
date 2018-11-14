@@ -5,7 +5,7 @@ import { formatPrice } from "../utils";
 
 const ItemWrapper = styled.div`
   border: 2px solid lightgray;
-  box-shadow: 0 0 3px lightgray;
+  box-shadow: ${props => props.theme.cardBS};
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1rem;
@@ -31,7 +31,6 @@ const ItemWrapper = styled.div`
 
   .title {
     grid-area: title;
-
   }
 
   .right {
@@ -66,22 +65,22 @@ const ItemWrapper = styled.div`
   }
 `;
 
-const Item = props => (
-
+const Item = props =>
+  console.log(props) || (
     <ItemWrapper>
       <Link
-          href={{
-          pathname: "items/",
+        href={{
+          pathname: "/items",
           query: { id: props.item.id }
-          }}
+        }}
       >
-         <h3 className="title" class="center">{props.item.title}</h3>
+        <h3 className="title">{props.item.title}</h3>
       </Link>
       <Link
-          href={{
-          pathname: "items/",
+        href={{
+          pathname: "/items",
           query: { id: props.item.id }
-          }}
+        }}
       >
         <div className="image-wrapper">
           <img
@@ -95,20 +94,19 @@ const Item = props => (
         <small>category: {props.item.category}</small>
         <p>{props.item.description}</p>
         <div className="horizontal">
-        <Link
-          href={{
-          pathname: "message/",
-          query: { id: props.item.id }
-          }}
+          <Link
+            href={{
+              pathname: "/message",
+              query: { id: props.item.id }
+            }}
           >
-            <button className="btn btn-outline-primary">Contact Seller</button>
+            <a className="btn btn-outline-primary">Contact Seller</a>
           </Link>
           <p className="price">{formatPrice(props.item.price)}</p>
         </div>
       </div>
     </ItemWrapper>
-
-);
+  );
 
 Item.propTypes = {
   item: PropTypes.shape({

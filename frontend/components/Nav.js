@@ -99,6 +99,9 @@ const Nav = props => (
           <Link href="/sell">
             <a>Sell</a>
           </Link>
+          <Link href="/signin">
+            <a>Sign in</a>
+          </Link>
         </li>
       </ul>
     </div>
