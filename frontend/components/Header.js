@@ -3,7 +3,7 @@ import Nav from "./Nav";
 
 const Disclaimer = styled.header`
   text-align: center;
-  background-color: red;
+  background-color: ${props => props.theme.yellow};
   color: white;
 `;
 

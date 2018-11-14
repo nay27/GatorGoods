@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Router from "next/router";
-import Item from "./Item";
+import Centered from "./styles/Centered";
 import Form from "./styles/Form";
 import { fakeItems } from "./Items";
 
@@ -19,9 +19,7 @@ class Message extends React.Component {
   };
   async componentDidMount() {
     this.setState({ loading: true });
-    const params = new URL(document.location).searchParams;
-    const id = parseInt(params.get("id"));
-    const item = fakeItems.filter(item => item.id === id);
+    const item = fakeItems.filter(item => item.id === this.props.id);
     this.setState({ loading: false, item: item[0] });
   }
   handleSubmit = e => {
@@ -29,33 +27,43 @@ class Message extends React.Component {
   };
   render() {
     return (
-      <div>
-        <h3>
-          {this.state.loading && <p>Loading...</p>}
-          {this.state.item && this.state.item.title}
-        </h3>
+      <Centered>
         <Form method="POST" onSubmit={this.handleSubmit}>
+          <h1>
+            {this.state.loading && <p>Loading...</p>}
+            {this.state.item && this.state.item.title}
+          </h1>
           <fieldset>
-            <h3>Send a message to seller</h3>
+            <strong>Send a message to seller</strong>
             <label htmlFor="message">
               Message
-              <input type="text" name="message" />
+              <textarea
+                type="text"
+                name="message"
+                placeholder="Enter a question about the item..."
+              />
             </label>
-            <select name="Locations" width="100px">
-              <option value="Select Location">Select Location</option>
-              <option value="lib">Library</option>
-              <option value="quad">Quad</option>
-              <option value="opt2">...</option>
-            </select>
+            <label htmlFor="location">
+              Select an optional exchange location:
+              <select name="location" width="100px">
+                <option value="Select Location">Select Location</option>
+                <option value="lib">Library</option>
+                <option value="quad">Quad</option>
+                <option value="opt2">...</option>
+              </select>
+            </label>
             <Row>
-              <button class="btn btn-danger mr-3" onClick={() => Router.back()}>
+              <button
+                className="btn btn-danger mr-3"
+                onClick={() => Router.back()}
+              >
                 Cancel
               </button>
               <button type="submit">Send</button>
             </Row>
           </fieldset>
         </Form>
-      </div>
+      </Centered>
     );
   }
 }

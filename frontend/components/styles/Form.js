@@ -4,6 +4,7 @@ const Form = styled.form `
   border: 1px solid lightgray;
   box-shadow: ${props => props.theme.cardBS};
   padding: 2rem;
+  max-width: 600px;
   fieldset {
     display: flex;
     flex-direction: column;
@@ -11,7 +12,7 @@ const Form = styled.form `
     label {
       display: block;
       width: 100%;
-      font-weight: 600;
+      font-weight: 400;
       margin-bottom: 1rem;
     }
     button[type="submit"] {
@@ -28,6 +29,11 @@ const Form = styled.form `
     }
     select {
       border-radius: 0; 
+      display: block;
+    }
+    textarea {
+      display: block;
+      width: 100%;
     }
   }
 `;

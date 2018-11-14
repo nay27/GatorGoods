@@ -6,7 +6,8 @@ export const fakeItems = [
   {
     id: 1,
     title: "Air Jordan 4 Retro",
-    description: "Brand new Air Jordan 4 Retro in black. Never worn. Size 10.5. ",
+    description:
+      "Brand new Air Jordan 4 Retro in black. Never worn. Size 10.5. ",
     price: 29000,
     category: 2,
     image: "/static/images/shoes.jpg"
@@ -31,7 +32,8 @@ export const fakeItems = [
   {
     id: 4,
     title: "IPhone XS ",
-    description: "Used IPhone XS in space grey. 256 GB memory. Working condition: Minor cosmetic scratches",
+    description:
+      "Used IPhone XS in space grey. 256 GB memory. Working condition: Minor cosmetic scratches",
     price: 50000,
     category: 4,
     image: "/static/images/phone.jpg"
@@ -69,11 +71,14 @@ class Items extends React.Component {
   }
   render() {
     return (
-      <ItemsWrapper>
-        {this.state.loading && <p>Loading...</p>}
-        {this.state.items &&
-          this.state.items.map(item => <Item item={item} key={item.id} />)}
-      </ItemsWrapper>
+      <>
+        <h2 className="ml-3">Recent Items</h2>
+        <ItemsWrapper>
+          {this.state.loading && <p>Loading...</p>}
+          {this.state.items &&
+            this.state.items.map(item => <Item item={item} key={item.id} />)}
+        </ItemsWrapper>
+      </>
     );
   }
 }

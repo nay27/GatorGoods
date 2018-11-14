@@ -22,7 +22,7 @@ const ItemWrapper = styled.div`
   /* on larger screens, show items with image on the left */
   @media (min-width: 600px) {
     text-align: left;
-    grid-template-columns: minmax(100px, 400px) 1fr;
+    grid-template-columns: minmax(100px, 200px) 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas:
       "image title"
@@ -31,6 +31,11 @@ const ItemWrapper = styled.div`
 
   .title {
     grid-area: title;
+    font-size: 1.5rem;
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 
   .right {
@@ -50,18 +55,11 @@ const ItemWrapper = styled.div`
   .price {
     color: green;
     font-weight: 600;
-    padding-left: 0.5rem;
+    font-size: 1.2rem;
   }
 
-  .horizontal {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    p {
-      margin: 0;
-    }
+  .contact {
+    width: 90%;
   }
 `;
 
@@ -74,7 +72,7 @@ const Item = props =>
           query: { id: props.item.id }
         }}
       >
-        <h3 className="title">{props.item.title}</h3>
+        <a className="title">{props.item.title}</a>
       </Link>
       <Link
         href={{
@@ -93,17 +91,15 @@ const Item = props =>
       <div className="right">
         <small>category: {props.item.category}</small>
         <p>{props.item.description}</p>
-        <div className="horizontal">
-          <Link
-            href={{
-              pathname: "/message",
-              query: { id: props.item.id }
-            }}
-          >
-            <a className="btn btn-outline-primary">Contact Seller</a>
-          </Link>
-          <p className="price">{formatPrice(props.item.price)}</p>
-        </div>
+        <p className="price">{formatPrice(props.item.price)}</p>
+        <Link
+          href={{
+            pathname: "/message",
+            query: { id: props.item.id }
+          }}
+        >
+          <a className="btn btn-outline-primary contact">Contact Seller</a>
+        </Link>
       </div>
     </ItemWrapper>
   );

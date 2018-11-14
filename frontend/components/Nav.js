@@ -15,7 +15,8 @@ const NavWrapper = styled.nav`
 
   .nav-grid {
     display: grid;
-    justify-items: center;
+    justify-content: center;
+    align-items: center;
   }
 
   .links {
@@ -32,7 +33,7 @@ const NavWrapper = styled.nav`
     padding: 0.5rem;
     color: #eeeeee;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     transition: background-color 0.2s;
   }
 
@@ -50,6 +51,7 @@ const NavWrapper = styled.nav`
 
     .links {
       justify-content: flex-end;
+      font-size: 1.2rem;
     }
   }
 
