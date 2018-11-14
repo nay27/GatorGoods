@@ -86,11 +86,6 @@ const Nav = props => (
       />
       <ul className="links">
         <li>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        </li>
-        <li>
           <Link href="/about">
             <a>About</a>
           </Link>
@@ -99,6 +94,8 @@ const Nav = props => (
           <Link href="/sell">
             <a>Sell</a>
           </Link>
+        </li>
+        <li>
           <Link href="/signin">
             <a>Sign in</a>
           </Link>
