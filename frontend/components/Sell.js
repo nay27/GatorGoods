@@ -76,6 +76,15 @@ class Sell extends React.Component {
             <label htmlFor="image">
               Image <input type="file" name="image" multiple />
             </label>
+          <ButtonWrapper>
+            <Link href={{pathname:"/"}}>
+                <input className="submit" type="submit" value="Post" onClick={()=> {alert("Your post is awaiting approval by the Moderator.")}} />
+            </Link>
+            <div className="divider"/>
+            <Link href={{pathname:"/"}}>
+                <input className="cancel" type="button" value="Cancel"/>
+            </Link>
+           </ButtonWrapper>
           </fieldset>
         </Form>
       </Centered>
