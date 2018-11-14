@@ -49,6 +49,7 @@ class Sell extends React.Component {
         <Form>
           <fieldset>
             <h1> Sell Item </h1>
+            <h4> Please post an item to sell </h4>
             <label htmlFor="title">
               Title*
               <input type="text" placeholder="Title Text" name="title" />
@@ -74,15 +75,16 @@ class Sell extends React.Component {
               <input type="text" placeholder="Description" />
             </label>
             <label htmlFor="image">
-              Image <input type="file" name="image" multiple />
+              Images* (five max)<input type="file" name="image" multiple />
             </label>
+            <h6>* Required field.</h6>
           <ButtonWrapper>
             <Link href={{pathname:"/"}}>
                 <input className="submit" type="submit" value="Post" onClick={()=> {alert("Your post is awaiting approval by the Moderator.")}} />
             </Link>
             <div className="divider"/>
             <Link href={{pathname:"/"}}>
-                <input className="cancel" type="button" value="Cancel"/>
+                <input className="cancel" type="button" value="Cancel" />
             </Link>
            </ButtonWrapper>
           </fieldset>
