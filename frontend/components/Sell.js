@@ -2,6 +2,7 @@ import Centered from "./styles/Centered";
 import Form from "./styles/Form";
 import Link from "next/link";
 import styled from "styled-components";
+import ImageSelect from "./ImageSelect";
 
 const ButtonWrapper = styled.div`
   .cancel {
@@ -73,9 +74,7 @@ class Sell extends React.Component {
               Description*
               <input type="text" placeholder="Description" />
             </label>
-            <label htmlFor="image">
-              Image <input type="file" name="image" multiple />
-            </label>
+            <ImageSelect />
           </fieldset>
         </Form>
       </Centered>
