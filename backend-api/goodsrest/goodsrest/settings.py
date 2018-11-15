@@ -25,7 +25,7 @@ SECRET_KEY = '30!y%3uzi)kgikk)q4a*mn(*_welcte_5iez8g$aih3%i&r8f2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-18-237-111-132.us-west-2.compute.amazonaws.com', '127.0.0.1']
 
 CORS_ORIGIN_WHITELIST = [
     "localhost:3000",
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'goods'
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 100
 }
 

@@ -8,11 +8,14 @@ from goods import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-
+router.register(r'categories', views.CategoryViewSet)
+router.register(r'items', views.ItemViewSet)
+router.register(r'images', views.ImageViewSet)
+router.register(r'locations', views.LocationViewSet)
+router.register(r'messages', views.MessageViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
 ]
-
