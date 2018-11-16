@@ -13,6 +13,7 @@ router.register(r'items', views.ItemViewSet)
 router.register(r'images', views.ImageViewSet)
 router.register(r'locations', views.LocationViewSet)
 router.register(r'messages', views.MessageViewSet)
+router.register(r'search', views.SearchViewSet, base_name='search-view')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
