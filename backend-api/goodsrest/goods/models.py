@@ -53,9 +53,9 @@ class Item(Base):
 class Image(Base):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item_image')
 
-    name = models.CharField(max_length=400)
+    name = models.CharField(max_length=400, blank=True, null=True)
     path = models.CharField(max_length=4096)
-    thumbnail = models.CharField(max_length=4096)
+    thumbnail = models.CharField(max_length=4096, blank=True, null=True)
 
     def __str__(self):
         return str(self.name)
@@ -66,8 +66,8 @@ class Image(Base):
 
 class Location(Base):
     name = models.CharField(max_length=400)
-    longitude = models.CharField(max_length=400)
-    latitude = models.CharField(max_length=400)
+    longitude = models.CharField(max_length=400, blank=True, null=True)
+    latitude = models.CharField(max_length=400, blank=True, null=True)
 
     def __str__(self):
         return str(self.name)
@@ -91,3 +91,15 @@ class Message(Base):
 
     class Meta:
         pass
+
+
+class WishList(Base):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wishlist_user')
+    item = models.ManyToManyField(Item, related_name='wishlist_item')
+
+    def __str__(self):
+        return str(self.user) + str(self.item)
+
+    class Meta:
+        pass
+

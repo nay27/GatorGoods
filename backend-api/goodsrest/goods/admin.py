@@ -22,6 +22,9 @@ class LocationAdmin(admin.ModelAdmin):
 class MessageAdmin(admin.ModelAdmin):
     pass
 
+class WishListAdmin(admin.ModelAdmin):
+    pass
+
 
 admin.site.register(Category, CategoryAdmin)
 
@@ -30,3 +33,5 @@ admin.site.register(Item, ItemAdmin)
 admin.site.register(Location, LocationAdmin)
 
 admin.site.register(Message, MessageAdmin)
+
+admin.site.register(WishList, WishListAdmin)

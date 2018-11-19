@@ -44,3 +44,9 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Message
         fields = ('id', 'content', 'sent', 'sender', 'recipient', 'about_item', 'location', 'created', 'modified', 'enabled')
+
+
+class WishListSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = WishList
+        fields = ('id', 'user', 'item', 'created', 'modified', 'enabled')

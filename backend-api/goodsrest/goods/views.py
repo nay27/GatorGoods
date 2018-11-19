@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, generics
 from goods.serializers import *
 from goods.models import *
 
@@ -46,4 +46,9 @@ class SearchViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ItemSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('title',)
+
+
+class WishListViewSet(viewsets.ModelViewSet):
+    queryset = WishList.objects.all()
+    serializer_class = WishListSerializer
 
