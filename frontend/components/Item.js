@@ -63,53 +63,52 @@ const ItemWrapper = styled.div`
   }
 `;
 
-const Item = props =>
-  console.log(props) || (
-    <ItemWrapper>
-      <Link
-        href={{
-          pathname: "/items",
-          query: { id: props.item.id }
-        }}
-      >
-        <a className="title">{props.item.title}</a>
-      </Link>
-      <Link
-        href={{
-          pathname: "/items",
-          query: { id: props.item.id }
-        }}
-      >
-        <div className="image-wrapper">
-          <img
-            src={props.item.image}
-            alt={props.item.title}
-            className="img-fluid"
-          />
-        </div>
-      </Link>
-      <div className="right">
-        <small>category: {props.item.category}</small>
-        <p>{props.item.description}</p>
-        <p className="price">{formatPrice(props.item.price)}</p>
-        <Link
-          href={{
-            pathname: "/message",
-            query: { id: props.item.id }
-          }}
-        >
-          <a className="btn btn-outline-primary contact">Contact Seller</a>
-        </Link>
+const Item = props => (
+  <ItemWrapper>
+    <Link
+      href={{
+        pathname: "/items",
+        query: { id: props.item.id }
+      }}
+    >
+      <a className="title">{props.item.title}</a>
+    </Link>
+    <Link
+      href={{
+        pathname: "/items",
+        query: { id: props.item.id }
+      }}
+    >
+      <div className="image-wrapper">
+        <img
+          src={props.item.image}
+          alt={props.item.title}
+          className="img-fluid"
+        />
       </div>
-    </ItemWrapper>
-  );
+    </Link>
+    <div className="right">
+      <small>category: {props.item.category}</small>
+      <p>{props.item.description}</p>
+      <p className="price">{formatPrice(props.item.price)}</p>
+      <Link
+        href={{
+          pathname: "/message",
+          query: { id: props.item.id }
+        }}
+      >
+        <a className="btn btn-outline-primary contact">Contact Seller</a>
+      </Link>
+    </div>
+  </ItemWrapper>
+);
 
 Item.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.description,
-    category: PropTypes.number,
+    category: PropTypes.string,
     price: PropTypes.number,
     image: PropTypes.string
   }).isRequired
