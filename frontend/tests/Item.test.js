@@ -6,7 +6,7 @@ describe("Item component", () => {
     const item = {
       title: "Boots",
       price: 1200,
-      category: 1,
+      category: "url",
       image: "/a.png",
       description: "Some boots"
     };
