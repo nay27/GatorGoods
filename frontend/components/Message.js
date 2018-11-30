@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Router from "next/router";
 import Centered from "./styles/Centered";
 import Form from "./styles/Form";
-import { fakeItems } from "./Items";
+import apiFactory from "../api";
 
 const Row = styled.div`
   display: flex;
@@ -19,8 +19,10 @@ class Message extends React.Component {
   };
   async componentDidMount() {
     this.setState({ loading: true });
-    const item = fakeItems.filter(item => item.id === this.props.id);
-    this.setState({ loading: false, item: item[0] });
+    const api = apiFactory(fetch);
+    const itemRes = await api(`/items/${this.props.id}`);
+    const item = await itemRes.json();
+    this.setState({ loading: false, item });
   }
   handleSubmit = e => {
     e.preventDefault();

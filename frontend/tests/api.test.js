@@ -3,7 +3,9 @@ import { BACKEND_API_URL, DEV_API_URL } from "../config";
 
 describe("api wrapper", () => {
   it("chooses server url in prod", () => {
-    expect(BACKEND_API_URL).not.toBe(DEV_API_URL);
+    // it is possible that a bug could arise by not checking the following line
+    // however currently we need the same url in dev and prod
+    // expect(BACKEND_API_URL).not.toBe(DEV_API_URL);
     const node_env = process.env.NODE_ENV;
     process.env.NODE_ENV = "production";
     const fetchMock = jest.fn();
