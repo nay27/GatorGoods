@@ -16,7 +16,7 @@ const NavWrapper = styled.nav`
   .nav-grid {
     display: grid;
     justify-content: center;
-    align-items: center;
+    justify-items: center;
   }
 
   .links {
@@ -47,6 +47,7 @@ const NavWrapper = styled.nav`
     .nav-grid {
       grid-template-columns: repeat(3, auto);
       justify-content: space-between;
+      align-items: center;
     }
 
     .links {
