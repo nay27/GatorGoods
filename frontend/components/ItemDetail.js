@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { formatPrice } from "../utils";
-import { fakeItems } from "./Items";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import apiFactory from "../api";
 
 const ItemWrapper = styled.div`
   display: grid;
@@ -30,8 +30,16 @@ class ItemDetail extends React.Component {
   };
   async componentDidMount() {
     this.setState({ loading: true });
-    const item = fakeItems.filter(item => item.id === this.props.id);
-    this.setState({ loading: false, item: item[0] });
+    const api = apiFactory(fetch);
+    const itemRes = await api(`/items/${this.props.id}`);
+    const item = await itemRes.json();
+    const categoryUrl = item.category;
+    const categoryRes = await fetch(categoryUrl);
+    const { name: categoryName } = await categoryRes.json();
+    this.setState({
+      loading: false,
+      item: { ...item, category: categoryName }
+    });
   }
   render() {
     return (
