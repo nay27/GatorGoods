@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import apiFactory from "../api";
+import _ from "isomorphic-fetch"; // since fetch is a frontend api, we need to fill it for next on server
 
 /**
  * This component uses some more advanced concepts of React, I'll try to summarize here,
