@@ -71,6 +71,8 @@ class Signup extends React.Component {
               type="email"
               name="email"
               id="email"
+              pattern=".+@mail.sfsu.edu"
+              title= "Please use your school email address"
               placeholder="Email"
               value={this.state.email}
               onChange={this.handleChange}

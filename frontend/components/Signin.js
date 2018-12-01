@@ -1,6 +1,7 @@
 import Form from "./styles/Form";
 import Error from "./Error";
 import Message from "./styles/Message";
+import Link from "next/link";
 
 class Signin extends React.Component {
   state = {
@@ -54,6 +55,8 @@ class Signin extends React.Component {
               type="email"
               name="email"
               id="email"
+              pattern=".+@mail.sfsu.edu"
+              title= "Please use your school email address"
               placeholder="Email"
               value={this.state.email}
               onChange={this.handleChange}
@@ -74,6 +77,19 @@ class Signin extends React.Component {
             Sign
             {loading && "ing"} In
           </button>
+          <hr color="black"/>
+          <div style={{textAlign: "center"}}>
+            <label>
+              New to GatorGoods?
+            </label>
+            <Link
+              href={{
+              pathname: "/signup"
+              }}
+             >
+              <a>SignUp Now</a>
+            </Link>
+           </div>
         </fieldset>
         {this.state.successMessage && (
           <Message>{this.state.successMessage}</Message>

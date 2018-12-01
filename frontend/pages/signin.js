@@ -1,12 +1,13 @@
 import Signin from "../components/Signin";
-import Signup from "../components/Signup";
 import Grid from "../components/styles/Grid";
+import Centered from "../components/styles/Centered";
 
 const SigninPage = () => (
-  <Grid>
-    <Signin />
-    <Signup />
-  </Grid>
+   <Centered>
+    <Grid>
+      <Signin />
+    </Grid>
+   </Centered>
 );
 
 export default SigninPage;
