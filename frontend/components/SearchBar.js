@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import Router from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,22 +10,36 @@ const Form = styled.form`
   }
 `;
 
-class SearchBar extends React.Component {
-  state = {
-    category:
-      this.props.defaultCategory ||
-      (this.props.categories && this.props.categories[0].value),
-    query: this.props.defaultQuery || ""
+const stateFromProps = props => {
+  return {
+    categoryId: props.defaultCategory
+      ? props.defaultCategory.id
+      : props.categories && props.categories[0].id,
+    query: props.defaultQuery || ""
   };
+};
+class SearchBar extends React.Component {
+  state = stateFromProps(this.props);
   handleChange = e => {
-    // {[name]: value} will use an expression to calculate the object key
-    // here, it uses the event's target's name, which will be category or query
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name === "category") {
+      this.setState({ categoryId: parseInt(e.target.value) });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   };
   handleSubmit = e => {
     e.preventDefault();
     // call the function that the parent provided, inversion of control
-    this.props.onSearch(this.state.category, this.state.query);
+    this.props.onSearch(this.state.categoryId, this.state.query);
+  };
+  componentDidMount() {
+    Router.events.on("routeChangeComplete", this.handleRouteChange);
+  }
+  componentWillUnmount() {
+    Router.events.off("routeChangeComplete", this.handleRouteChange);
+  }
+  handleRouteChange = url => {
+    this.setState(stateFromProps(this.props));
   };
   render() {
     return (
@@ -42,8 +57,8 @@ class SearchBar extends React.Component {
                 this.props.categories.map(category => (
                   <option
                     className="dropdown-item"
-                    value={category.value}
-                    key={category.value}
+                    value={category.id}
+                    key={category.id}
                   >
                     {category.name}
                   </option>

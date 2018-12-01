@@ -7,16 +7,16 @@ ShallowWrapper {
     categories={
       Array [
         Object {
+          "id": 0,
           "name": "All",
-          "value": 0,
         },
         Object {
+          "id": 1,
           "name": "Books",
-          "value": 1,
         },
         Object {
+          "id": 2,
           "name": "Furniture",
-          "value": 2,
         },
       ]
     }
@@ -45,7 +45,6 @@ ShallowWrapper {
             id="category-select"
             name="category"
             onChange={[Function]}
-            value={0}
           >
             <option
               className="dropdown-item"
@@ -133,7 +132,6 @@ ShallowWrapper {
               id="category-select"
               name="category"
               onChange={[Function]}
-              value={0}
             >
               <option
                 className="dropdown-item"
@@ -218,7 +216,6 @@ ShallowWrapper {
               id="category-select"
               name="category"
               onChange={[Function]}
-              value={0}
             >
               <option
                 className="dropdown-item"
@@ -271,7 +268,7 @@ ShallowWrapper {
               "id": "category-select",
               "name": "category",
               "onChange": [Function],
-              "value": 0,
+              "value": undefined,
             },
             "ref": null,
             "rendered": Array [
@@ -500,7 +497,6 @@ ShallowWrapper {
               id="category-select"
               name="category"
               onChange={[Function]}
-              value={0}
             >
               <option
                 className="dropdown-item"
@@ -588,7 +584,6 @@ ShallowWrapper {
                 id="category-select"
                 name="category"
                 onChange={[Function]}
-                value={0}
               >
                 <option
                   className="dropdown-item"
@@ -673,7 +668,6 @@ ShallowWrapper {
                 id="category-select"
                 name="category"
                 onChange={[Function]}
-                value={0}
               >
                 <option
                   className="dropdown-item"
@@ -726,7 +720,7 @@ ShallowWrapper {
                 "id": "category-select",
                 "name": "category",
                 "onChange": [Function],
-                "value": 0,
+                "value": undefined,
               },
               "ref": null,
               "rendered": Array [

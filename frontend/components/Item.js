@@ -71,22 +71,17 @@ const Item = props => (
         query: { id: props.item.id }
       }}
     >
-      <a className="title">{props.item.title}</a>
+      <a className="title" target="_blank">
+        {props.item.title}
+      </a>
     </Link>
-    <Link
-      href={{
-        pathname: "/items",
-        query: { id: props.item.id }
-      }}
-    >
-      <div className="image-wrapper">
-        <img
-          src={props.item.image}
-          alt={props.item.title}
-          className="img-fluid"
-        />
-      </div>
-    </Link>
+    <div className="image-wrapper">
+      <img
+        src={props.item.image}
+        alt={props.item.title}
+        className="img-fluid"
+      />
+    </div>
     <div className="right">
       <small>category: {props.item.category}</small>
       <p>{props.item.description}</p>

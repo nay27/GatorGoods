@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { withRouter } from "next/router";
 import Item from "./Item";
 import PaginationProvider from "./PaginationProvider";
 import PageInfo from "./PageInfo";
@@ -13,11 +14,23 @@ const ItemsWrapper = styled.div`
 
 class Items extends React.Component {
   render() {
+    const {
+      router: { query }
+    } = this.props;
     return (
-      <PaginationProvider resource="/items">
+      <PaginationProvider
+        resource={
+          query && query.query
+            ? `/search?search=${query.query}&category=${query.category}`
+            : "/items"
+        }
+      >
         {info => (
           <>
-            <h2 className="ml-3">Recent Items</h2>
+            <div className="ml-3">
+              <h2>{query.query ? "Search Results" : "Recent Items"}</h2>
+              <small>Showing {info.count} item(s)</small>
+            </div>
             <ItemsWrapper>
               {info.loading && <p>Loading...</p>}
               {info.data &&
@@ -31,4 +44,4 @@ class Items extends React.Component {
   }
 }
 
-export default Items;
+export default withRouter(Items);

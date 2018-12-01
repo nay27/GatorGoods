@@ -2,9 +2,9 @@ import SearchBar from "../components/SearchBar";
 import { shallow, render, mount } from "enzyme";
 
 const fakeCategories = [
-  { name: "All", value: 0 },
-  { name: "Books", value: 1 },
-  { name: "Furniture", value: 2 }
+  { name: "All", id: 0 },
+  { name: "Books", id: 1 },
+  { name: "Furniture", id: 2 }
 ];
 
 describe("SearchBar component", () => {
@@ -17,13 +17,16 @@ describe("SearchBar component", () => {
   });
   it("can be passed a default category selection", () => {
     const wrapper = shallow(
-      <SearchBar categories={fakeCategories} defaultCategory={2} />
+      <SearchBar
+        categories={fakeCategories}
+        defaultCategory={fakeCategories[2]}
+      />
     );
-    expect(wrapper.state("category")).toBe(2);
+    expect(wrapper.state("categoryId")).toBe(fakeCategories[2].id);
   });
   it("will set the default category selection to the first element otherwise", () => {
     const wrapper = shallow(<SearchBar categories={fakeCategories} />);
-    expect(wrapper.state("category")).toBe(fakeCategories[0].value);
+    expect(wrapper.state("categoryId")).toBe(fakeCategories[0].id);
   });
   it("calls prop-provided method onSearch", () => {
     const handleSearch = jest.fn();
@@ -44,11 +47,11 @@ describe("SearchBar component", () => {
     const wrapper = shallow(
       <SearchBar
         categories={fakeCategories}
-        defaultCategory={1}
+        defaultCategory={fakeCategories[1]}
         defaultQuery="shoes"
       />
     );
     expect(wrapper.state("query")).toBe("shoes");
-    expect(wrapper.state("category")).toBe(1);
+    expect(wrapper.state("categoryId")).toBe(fakeCategories[1].id);
   });
 });
