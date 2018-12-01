@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['ec2-18-237-111-132.us-west-2.compute.amazonaws.com', '127.0.0.
 
 CORS_ORIGIN_WHITELIST = [
     "localhost:3000",
+    "localhost:8000",
     "52.53.153.2"
 ]
 
