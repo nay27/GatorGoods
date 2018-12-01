@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Router from "next/router";
+import apiFactory from "../api"
 import SearchBar from "./SearchBar";
 
 const NavWrapper = styled.nav`
@@ -61,9 +62,21 @@ const NavWrapper = styled.nav`
   }
 `;
 
-const categories = [{ name: "All", value: 1 }, { name: "Books", value: 2 }];
+const defaultCategory = {name: 'All', id: 0}
 
-const Nav = props => (
+class Nav extends React.Component {
+  state = {
+    categories: null,
+  }
+  async componentDidMount() {
+    const api = apiFactory(fetch);
+    const res = await api("/categories");
+    const data = await res.json();
+    this.setState({ categories: [defaultCategory, ...data.results] })
+  }
+  render() {
+    return (
+
   <NavWrapper>
     <div className="nav-grid">
       <Link href="/">
@@ -75,11 +88,12 @@ const Nav = props => (
         />
       </Link>
       <SearchBar
-        categories={categories}
-        defaultCategory={props.category}
-        defaultQuery={props.query}
+        categories={this.state.categories}
+        defaultCategory={defaultCategory}
+        defaultQuery={this.props.query}
         onSearch={(category, query) =>
-          Router.push("/items", {
+          Router.push({
+            pathname: "/items",
             query: {
               category,
               query
@@ -106,6 +120,8 @@ const Nav = props => (
       </ul>
     </div>
   </NavWrapper>
-);
+    )
+  }
+}
 
 export default Nav;
