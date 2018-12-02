@@ -9,6 +9,7 @@ from goods.models import *
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+    ordering_fields = ('username', 'email')
 
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -24,6 +25,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    filter_backends = (filters.OrderingFilter,)
+    ordering = 'price'
 
 
 class ImageViewSet(viewsets.ModelViewSet):
