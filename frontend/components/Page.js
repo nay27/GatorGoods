@@ -1,5 +1,7 @@
+import React from "react";
 import styled, { ThemeProvider, injectGlobal } from "styled-components";
 import Header from "./Header";
+import CategoriesProvider from "./CategoriesProvider";
 
 const theme = {
   purple: "#231161",
@@ -17,10 +19,12 @@ const ContentContainer = styled.div`
 
 const Page = props => (
   <ThemeProvider theme={theme}>
-    <>
-      <Header query={props.query} />
-      <ContentContainer>{props.children}</ContentContainer>
-    </>
+    <CategoriesProvider>
+      <>
+        <Header query={props.query} />
+        <ContentContainer>{props.children}</ContentContainer>
+      </>
+    </CategoriesProvider>
   </ThemeProvider>
 );
 

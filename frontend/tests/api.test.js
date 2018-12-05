@@ -1,11 +1,18 @@
-import Api from "../api";
-import { BACKEND_API_URL, DEV_API_URL } from "../config";
+import Api, { categoryIdFromUrl, getCategories } from "../api";
+import { BACKEND_API_URL, DEV_API_URL, TEST_API_URL } from "../config";
 
 describe("api wrapper", () => {
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+  it("chooses test url in tests", async () => {
+    const api = Api(fetch);
+    await api("/testing");
+    expect(fetch.mock.calls[0][0]).toBe(`${TEST_API_URL}/testing`);
+  });
   it("chooses server url in prod", () => {
-    // it is possible that a bug could arise by not checking the following line
-    // however currently we need the same url in dev and prod
-    // expect(BACKEND_API_URL).not.toBe(DEV_API_URL);
+    // make sure the test url is actually discernable from prod url
+    expect(TEST_API_URL).not.toBe(BACKEND_API_URL);
     const node_env = process.env.NODE_ENV;
     process.env.NODE_ENV = "production";
     const fetchMock = jest.fn();
@@ -22,5 +29,85 @@ describe("api wrapper", () => {
     api("/items/");
     expect(fetchMock.mock.calls[0][0]).toBe(`${DEV_API_URL}/items/`);
     process.env.NODE_ENV = node_env;
+  });
+});
+
+describe("getCategories", () => {
+  it("fetches the correct data", async () => {
+    const nestedData = [
+      {
+        id: 1,
+        name: "books",
+        created: "2018-11-17T00:00:05.706945Z",
+        modified: "2018-11-17T00:00:05.706980Z",
+        enabled: true
+      },
+      {
+        id: 2,
+        name: "electronics",
+        created: "2018-11-17T00:00:20.269718Z",
+        modified: "2018-11-17T00:00:20.269753Z",
+        enabled: true
+      },
+      {
+        id: 3,
+        name: "grocery",
+        created: "2018-11-17T00:00:41.956316Z",
+        modified: "2018-11-17T00:00:41.956348Z",
+        enabled: true
+      }
+    ];
+    fetch.mockResponseOnce(
+      JSON.stringify({
+        count: 3,
+        next: null,
+        previous: null,
+        results: [
+          {
+            id: 1,
+            name: "books",
+            created: "2018-11-17T00:00:05.706945Z",
+            modified: "2018-11-17T00:00:05.706980Z",
+            enabled: true
+          },
+          {
+            id: 2,
+            name: "electronics",
+            created: "2018-11-17T00:00:20.269718Z",
+            modified: "2018-11-17T00:00:20.269753Z",
+            enabled: true
+          },
+          {
+            id: 3,
+            name: "grocery",
+            created: "2018-11-17T00:00:41.956316Z",
+            modified: "2018-11-17T00:00:41.956348Z",
+            enabled: true
+          }
+        ]
+      })
+    );
+    const getCategoriesInstance = getCategories(fetch);
+    const categories = await getCategoriesInstance();
+    expect(fetch.mock.calls.length).toBe(1);
+    expect(categories).toEqual(nestedData);
+    expect(fetch.mock.calls[0][0]).toBe(`${TEST_API_URL}/categories/`);
+  });
+});
+
+describe("categoryIdFromUrl", () => {
+  it("correctly strips out id", () => {
+    const id = categoryIdFromUrl(`${TEST_API_URL}/categories/42/`);
+    expect(id).toBe(42);
+  });
+  it("works without trailing slash", () => {
+    const id = categoryIdFromUrl(`${TEST_API_URL}/categories/2`);
+    expect(id).toBe(2);
+  });
+  it("returns null when id is not present", () => {
+    const id = categoryIdFromUrl(`${TEST_API_URL}/categories/`);
+    expect(id).toBe(null);
+    const idNoSlash = categoryIdFromUrl(`${TEST_API_URL}/categories`);
+    expect(idNoSlash).toBe(null);
   });
 });
