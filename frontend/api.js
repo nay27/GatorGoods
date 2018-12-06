@@ -1,6 +1,6 @@
 import { BACKEND_API_URL, DEV_API_URL, TEST_API_URL } from "./config";
 
-const apiFactory = fetch => (path, options) => {
+const api = (path, options) => {
   const getHost = env => {
     switch (process.env.NODE_ENV) {
       case "production":
@@ -16,8 +16,7 @@ const apiFactory = fetch => (path, options) => {
   return fetch(url, options);
 };
 
-export const getCategories = fetch => async () => {
-  const api = apiFactory(fetch);
+export const getCategories = async () => {
   const res = await api("/categories/");
   const data = await res.json();
   return data.results;
@@ -38,4 +37,4 @@ export const categoryIdFromUrl = url => {
   return null;
 };
 
-export default apiFactory;
+export default api;

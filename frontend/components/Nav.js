@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Router from "next/router";
-import apiFactory from "../api"
+import api from "../api";
 import SearchBar from "./SearchBar";
 
 const NavWrapper = styled.nav`
@@ -62,65 +62,63 @@ const NavWrapper = styled.nav`
   }
 `;
 
-const defaultCategory = {name: 'All', id: 0}
+const defaultCategory = { name: "All", id: 0 };
 
 class Nav extends React.Component {
   state = {
-    categories: null,
-  }
+    categories: null
+  };
   async componentDidMount() {
-    const api = apiFactory(fetch);
     const res = await api("/categories");
     const data = await res.json();
-    this.setState({ categories: [defaultCategory, ...data.results] })
+    this.setState({ categories: [defaultCategory, ...data.results] });
   }
   render() {
     return (
-
-  <NavWrapper>
-    <div className="nav-grid">
-      <Link href="/">
-        <img
-          src="/static/images/sticker_logo.png"
-          alt="Gator Goods Logo"
-          height="50px"
-          className="image"
-        />
-      </Link>
-      <SearchBar
-        categories={this.state.categories}
-        defaultCategory={defaultCategory}
-        defaultQuery={this.props.query}
-        onSearch={(category, query) =>
-          Router.push({
-            pathname: "/items",
-            query: {
-              category,
-              query
+      <NavWrapper>
+        <div className="nav-grid">
+          <Link href="/">
+            <img
+              src="/static/images/sticker_logo.png"
+              alt="Gator Goods Logo"
+              height="50px"
+              className="image"
+            />
+          </Link>
+          <SearchBar
+            categories={this.state.categories}
+            defaultCategory={defaultCategory}
+            defaultQuery={this.props.query}
+            onSearch={(category, query) =>
+              Router.push({
+                pathname: "/items",
+                query: {
+                  category,
+                  query
+                }
+              })
             }
-          })
-        }
-      />
-      <ul className="links">
-        <li>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/sell">
-            <a>Sell</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/signin">
-            <a>Sign in</a>
-          </Link>
-        </li>
-      </ul>
-    </div>
-  </NavWrapper>
-    )
+          />
+          <ul className="links">
+            <li>
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/sell">
+                <a>Sell</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/signin">
+                <a>Sign in</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </NavWrapper>
+    );
   }
 }
 

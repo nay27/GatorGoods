@@ -1,4 +1,4 @@
-import Api, { categoryIdFromUrl, getCategories } from "../api";
+import api, { categoryIdFromUrl, getCategories } from "../api";
 import { BACKEND_API_URL, DEV_API_URL, TEST_API_URL } from "../config";
 
 describe("api wrapper", () => {
@@ -6,7 +6,6 @@ describe("api wrapper", () => {
     fetch.resetMocks();
   });
   it("chooses test url in tests", async () => {
-    const api = Api(fetch);
     await api("/testing");
     expect(fetch.mock.calls[0][0]).toBe(`${TEST_API_URL}/testing`);
   });
@@ -15,24 +14,23 @@ describe("api wrapper", () => {
     expect(TEST_API_URL).not.toBe(BACKEND_API_URL);
     const node_env = process.env.NODE_ENV;
     process.env.NODE_ENV = "production";
-    const fetchMock = jest.fn();
-    const api = Api(fetchMock);
     api("/users/");
-    expect(fetchMock.mock.calls[0][0]).toBe(`${BACKEND_API_URL}/users/`);
+    expect(fetch.mock.calls[0][0]).toBe(`${BACKEND_API_URL}/users/`);
     process.env.NODE_ENV = node_env;
   });
   it("chooses dev url otherwise", () => {
     const node_env = process.env.NODE_ENV;
     process.env.NODE_ENV = null;
-    const fetchMock = jest.fn();
-    const api = Api(fetchMock);
     api("/items/");
-    expect(fetchMock.mock.calls[0][0]).toBe(`${DEV_API_URL}/items/`);
+    expect(fetch.mock.calls[0][0]).toBe(`${DEV_API_URL}/items/`);
     process.env.NODE_ENV = node_env;
   });
 });
 
 describe("getCategories", () => {
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
   it("fetches the correct data", async () => {
     const nestedData = [
       {
@@ -87,8 +85,7 @@ describe("getCategories", () => {
         ]
       })
     );
-    const getCategoriesInstance = getCategories(fetch);
-    const categories = await getCategoriesInstance();
+    const categories = await getCategories();
     expect(fetch.mock.calls.length).toBe(1);
     expect(categories).toEqual(nestedData);
     expect(fetch.mock.calls[0][0]).toBe(`${TEST_API_URL}/categories/`);

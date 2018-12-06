@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Router from "next/router";
 import Centered from "./styles/Centered";
 import Form from "./styles/Form";
-import apiFactory from "../api";
+import api from "../api";
 
 const Row = styled.div`
   display: flex;
@@ -19,7 +19,6 @@ class Message extends React.Component {
   };
   async componentDidMount() {
     this.setState({ loading: true });
-    const api = apiFactory(fetch);
     const itemRes = await api(`/items/${this.props.id}`);
     const item = await itemRes.json();
     this.setState({ loading: false, item });

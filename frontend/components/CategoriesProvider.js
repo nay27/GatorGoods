@@ -19,8 +19,7 @@ class CategoriesProvider extends React.Component {
     return category;
   };
   async componentDidMount() {
-    const getCategoriesF = getCategories(fetch);
-    const categories = await getCategoriesF();
+    const categories = await getCategories();
     this.setState({ categories });
   }
   render() {
