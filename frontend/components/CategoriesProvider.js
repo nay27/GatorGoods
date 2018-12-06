@@ -3,7 +3,7 @@ import { getCategories, categoryIdFromUrl } from "../api";
 
 export const CategoryContext = React.createContext({
   cache: [],
-  getCategory: id => "loading"
+  getCategory: id => ({ name: "loading" })
 });
 
 class CategoriesProvider extends React.Component {
@@ -11,7 +11,7 @@ class CategoriesProvider extends React.Component {
     categories: []
   };
   getCategory = id => {
-    if (this.state.categories.length == 0) return "loading";
+    if (this.state.categories.length == 0) return { name: "loading" };
     if (typeof id === "string") {
       id = categoryIdFromUrl(id);
     }

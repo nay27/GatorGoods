@@ -34,25 +34,25 @@ class Items extends React.Component {
             </div>
             <ItemsWrapper>
               <CategoryContext.Consumer>
-                {context => (
-                  <>
-                    {info.loading && <p>Loading...</p>}
-                    {info.data &&
-                      info.data.map(item => {
-                        const category = context.getCategory(item.category);
-                        const categoryName =
-                          category && "name" in category
-                            ? category.name
-                            : "unknown";
-                        return (
-                          <Item
-                            item={{ ...item, category: categoryName }}
-                            key={item.id}
-                          />
-                        );
-                      })}
-                  </>
-                )}
+                {context => {
+                  if (info.loading) return <p>Loading...</p>;
+                  else if (info.data) {
+                    return info.data.map(item => {
+                      const category = context.getCategory(item.category);
+                      console.log(category);
+                      const categoryName =
+                        category && "name" in category
+                          ? category.name
+                          : "unknown";
+                      return (
+                        <Item
+                          item={{ ...item, category: categoryName }}
+                          key={item.id}
+                        />
+                      );
+                    });
+                  }
+                }}
               </CategoryContext.Consumer>
             </ItemsWrapper>
             <PageInfo {...info} />
