@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-const Form = styled.form `
+const Form = styled.form`
   border: 1px solid lightgray;
   box-shadow: ${props => props.theme.cardBS};
   padding: 2rem;
+  width: 100%;
   max-width: 600px;
   fieldset {
     display: flex;
@@ -28,7 +29,7 @@ const Form = styled.form `
       width: 100%;
     }
     select {
-      border-radius: 0; 
+      border-radius: 0;
       display: block;
     }
     textarea {
@@ -36,13 +37,13 @@ const Form = styled.form `
       width: 100%;
     }
 
-   cancel{
-         width:178px;
-         height:50px;
-         background-color:#ff3232 ;
-         border-radius:5px;
-         font-weight:bold;
-         color:white;
+    cancel {
+      width: 178px;
+      height: 50px;
+      background-color: #ff3232;
+      border-radius: 5px;
+      font-weight: bold;
+      color: white;
     }
   }
 `;
