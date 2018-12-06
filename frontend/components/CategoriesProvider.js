@@ -2,16 +2,16 @@ import React from "react";
 import { getCategories, categoryIdFromUrl } from "../api";
 
 export const CategoryContext = React.createContext({
-  cache: {},
+  cache: [],
   getCategory: id => "loading"
 });
 
 class CategoriesProvider extends React.Component {
   state = {
-    categories: null
+    categories: []
   };
   getCategory = id => {
-    if (!this.state.categories) return "loading";
+    if (this.state.categories.length == 0) return "loading";
     if (typeof id === "string") {
       id = categoryIdFromUrl(id);
     }

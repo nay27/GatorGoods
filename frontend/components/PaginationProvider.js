@@ -36,7 +36,7 @@ class PaginationProvider extends React.Component {
     loading: false,
     count: 0
   };
-  async componentWillMount() {
+  async componentDidMount() {
     await this.setup();
   }
   async componentDidUpdate(prevProps) {
