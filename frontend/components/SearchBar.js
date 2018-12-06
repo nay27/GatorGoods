@@ -73,6 +73,8 @@ class SearchBar extends React.Component {
             placeholder="Search for an item..."
             value={this.state.query}
             onChange={this.handleChange}
+            pattern="^[^-~+=@#^&*\\`]{0,40}$"
+            title="Your query contains invalid characters"
           />
           <div className="input-group-append">
             <button className="btn btn-outline" type="submit">
