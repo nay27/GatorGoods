@@ -25,12 +25,20 @@ class Items extends React.Component {
             ? `/search?search=${query.query}&category=${query.category}`
             : "/items"
         }
+        ifNone="/items"
       >
         {info => (
           <>
             <div className="ml-3">
               <h2>{query.query ? "Search Results" : "Recent Items"}</h2>
-              <small>Showing {info.count} item(s)</small>
+              {info.ifNoneCalled ? (
+                <strong>
+                  No results found for "{query.query}
+                  ". Showing {info.count} recent item(s) below
+                </strong>
+              ) : (
+                <small>Showing {info.count} item(s)</small>
+              )}
             </div>
             <ItemsWrapper>
               <CategoryContext.Consumer>

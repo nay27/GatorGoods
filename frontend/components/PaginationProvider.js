@@ -19,12 +19,16 @@ import api from "../api";
  * The easy way to use this component is to pass the info from the render prop function to
  * `PageInfo`. This component also needs to be passed a `resource` prop which should be the
  * endpoint you are trying to access such as `/items` (note: you do not need to provide the
- * hostname as this is provided by the api module)
+ * hostname as this is provided by the api module). An optional `ifNone` prop can be passed
+ * with a similar format to `resource` which will be requested if there are no results
+ * returned from the origial query.
+ *
  */
 class PaginationProvider extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
-    resource: PropTypes.string.isRequired
+    resource: PropTypes.string.isRequired,
+    ifNone: PropTypes.string
   };
   state = {
     hasNextPage: false,
@@ -34,7 +38,8 @@ class PaginationProvider extends React.Component {
     data: null,
     currPage: 1,
     loading: false,
-    count: 0
+    count: 0,
+    ifNoneCalled: false
   };
   async componentDidMount() {
     await this.setup();
@@ -48,10 +53,18 @@ class PaginationProvider extends React.Component {
     this.setState({ loading: true });
     const res = await api(this.props.resource);
     const json = await res.json();
-    this.setStateWithResults(json);
+    const data = await this.callAlternativeIfNeeded(json);
+    this.setStateWithResults(data);
+  };
+  callAlternativeIfNeeded = async data => {
+    if (!this.props.ifNone) return data;
+    if (data.count && data.count > 0) return data;
+    const res = await api(this.props.ifNone);
+    const newData = await res.json();
+    return { ...newData, ifNoneCalled: true };
   };
   setStateWithResults = data => {
-    const { next, previous, count, results } = data;
+    const { next, previous, count, results, ifNoneCalled = false } = data;
     this.setState({
       count,
       data: results,
@@ -60,7 +73,8 @@ class PaginationProvider extends React.Component {
       currPage: 1,
       loading: false,
       hasNextPage: next !== null,
-      hasPrevPage: previous !== null
+      hasPrevPage: previous !== null,
+      ifNoneCalled
     });
   };
   nextPage = async () => {
@@ -86,7 +100,8 @@ class PaginationProvider extends React.Component {
       hasPrevPage,
       data,
       loading,
-      currPage
+      currPage,
+      ifNoneCalled
     } = this.state;
     return this.props.children({
       count,
@@ -96,7 +111,8 @@ class PaginationProvider extends React.Component {
       loading,
       currPage,
       nextPage: this.nextPage,
-      prevPage: this.prevPage
+      prevPage: this.prevPage,
+      ifNoneCalled
     });
   }
 }
