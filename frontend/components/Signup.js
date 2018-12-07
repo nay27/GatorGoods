@@ -2,6 +2,7 @@ import Form from "./styles/Form";
 import Error from "./Error";
 import Message from "./styles/Message";
 
+
 class Signup extends React.Component {
   state = {
     email: "",
@@ -9,8 +10,10 @@ class Signup extends React.Component {
     confirmPassword: "",
     error: null,
     successMessage: "",
-    loading: false
+    loading: false,
+    terms: false
   };
+
   signin = e => {
     e.preventDefault();
     this.setState({ loading: true });
@@ -36,6 +39,15 @@ class Signup extends React.Component {
       });
       return;
     }
+    if (
+          !this.state.terms
+        ) {
+          this.setState({
+            error: { message: "Please accept the terms and conditions." },
+            loading: false
+          });
+          return;
+        }
     // fakes api call time to test ui
     this.setState({ loading: true }, () => {
       setTimeout(
@@ -45,12 +57,16 @@ class Signup extends React.Component {
             email: "",
             password: "",
             confirmPassword: "",
-            successMessage: "Signed in!"
+            successMessage: "Signed in!",
+            terms: true
           }),
         2000
       );
     });
   };
+  handleCheck = e => {
+      this.setState({
+       terms: !this.state.terms})};
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -100,9 +116,20 @@ class Signup extends React.Component {
               onChange={this.handleChange}
             />
           </label>
+
+           <div>
+            <input
+              type="checkbox"
+              id="termsCheckbox"
+              onChange={this.handleCheck}
+              defaultChecked={false}/>
+            <label htmlFor="termsCheckbox">
+              <a href="">Terms and Conditions</a>
+            </label>
+          </div>
           <button type="submit">
             Sign
-            {loading && "ing"} In
+            {loading && "ing"} Up
           </button>
         </fieldset>
         {this.state.successMessage && (
