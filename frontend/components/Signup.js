@@ -117,16 +117,15 @@ class Signup extends React.Component {
             />
           </label>
 
-           <div>
+           <label>
+            <a href="">Terms and Conditions</a>
             <input
               type="checkbox"
               id="termsCheckbox"
               onChange={this.handleCheck}
               defaultChecked={false}/>
-            <label htmlFor="termsCheckbox">
-              <a href="">Terms and Conditions</a>
-            </label>
-          </div>
+
+          </label>
           <button type="submit">
             Sign
             {loading && "ing"} Up
