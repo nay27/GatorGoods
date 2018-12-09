@@ -7,7 +7,7 @@ from goods.models import *
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'url', 'username', 'email', 'groups', 'last_login')
+        fields = ('id', 'url', 'username', 'password', 'email', 'groups', 'last_login')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):

@@ -5,10 +5,14 @@ from rest_framework import viewsets, filters, generics
 from goods.serializers import *
 from goods.models import *
 
+from django_filters import rest_framework as restfilters
+from rest_framework.filters import SearchFilter, OrderingFilter
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+    ordering_fields = ('username', 'email')
 
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -24,6 +28,10 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
+    __fields = ('category', 'category__name')
+    filter_fields = __fields
+    search_fields = __fields
 
 
 class ImageViewSet(viewsets.ModelViewSet):
@@ -44,11 +52,12 @@ class MessageViewSet(viewsets.ModelViewSet):
 class SearchViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('title',)
+    filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
+    search_fields = ('title', 'description')
+    filter_fields = search_fields
+    search_fields = search_fields
 
 
 class WishListViewSet(viewsets.ModelViewSet):
     queryset = WishList.objects.all()
     serializer_class = WishListSerializer
-
