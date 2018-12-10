@@ -19,5 +19,6 @@ router.register(r'search', views.SearchViewSet, base_name='search-view')
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^upload/', views.FileUploadView.as_view()),
     path('admin/', admin.site.urls),
 ]

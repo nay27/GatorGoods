@@ -7,6 +7,16 @@ from goods.models import *
 
 from django_filters import rest_framework as restfilters
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.parsers import MultiPartParser, FileUploadParser
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.exceptions import ParseError
+from rest_framework.views import APIView
+
+from django.core.files.storage import default_storage
+from django.conf import settings
+import os
+from PIL import Image as PImage
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -37,6 +47,10 @@ class ItemViewSet(viewsets.ModelViewSet):
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
+    filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
+    __fields = ('item', 'item__id')
+    filter_fields = __fields
+    search_fields = __fields
 
 
 class LocationViewSet(viewsets.ModelViewSet):
@@ -49,15 +63,37 @@ class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
 
 
+class WishListViewSet(viewsets.ModelViewSet):
+    queryset = WishList.objects.all()
+    serializer_class = WishListSerializer
+
+
 class SearchViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
-    search_fields = ('title', 'description')
-    filter_fields = search_fields
-    search_fields = search_fields
+    __fields = ('title', 'description')
+    filter_fields = __fields
+    search_fields = __fields
 
 
-class WishListViewSet(viewsets.ModelViewSet):
-    queryset = WishList.objects.all()
-    serializer_class = WishListSerializer
+class FileUploadView(APIView):
+    parser_class = (MultiPartParser,)
+
+    def post(self, request, format=None):
+        if 'image' not in request.data:
+            raise ParseError("Content not provided")
+
+        item_id = request.POST.get('item_id', False)
+        f = request.data['image']
+        filename = "big__" + str(f)
+        save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', filename)
+        path = default_storage.save(save_path, f)
+        thumb = "small__" + str(f)
+        PImage.open(path).resize((80, 80)).save(os.path.join(settings.MEDIA_ROOT, 'uploads', thumb))
+
+        im = Image(name=filename, path=path, thumbnail=thumb, item=Item.objects.get(pk=item_id))
+        im.save()
+
+        return Response(status=status.HTTP_201_CREATED)
+
