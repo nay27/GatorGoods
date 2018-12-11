@@ -55,8 +55,6 @@ class Signin extends React.Component {
               type="email"
               name="email"
               id="email"
-              pattern=".+@mail.sfsu.edu"
-              title= "Please use your school email address"
               placeholder="Email"
               value={this.state.email}
               onChange={this.handleChange}
@@ -72,6 +70,7 @@ class Signin extends React.Component {
               value={this.state.password}
               onChange={this.handleChange}
             />
+            <a href="">Forgot password?</a>
           </label>
           <button type="submit">
             Sign

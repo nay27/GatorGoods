@@ -1,19 +1,26 @@
 import Form from "./styles/Form";
 import Error from "./Error";
 import Message from "./styles/Message";
+import Recaptcha from 'react-recaptcha';
 
 
 class Signup extends React.Component {
-  state = {
-    email: "",
-    password: "",
-    confirmPassword: "",
-    error: null,
-    successMessage: "",
-    loading: false,
-    terms: false
-  };
+  constructor (props){
+    super (props)
 
+    this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
+    this.verifyCallback = this.verifyCallback.bind(this);
+    this.state = {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      error: null,
+      successMessage: "",
+      loading: false,
+      terms: false,
+      verified: false
+    };
+  }
   signin = e => {
     e.preventDefault();
     this.setState({ loading: true });
@@ -48,6 +55,15 @@ class Signup extends React.Component {
           });
           return;
         }
+      if (
+          !this.state.verified
+        ) {
+          this.setState({
+            error: { message: "Please verify that you are a human." },
+            loading: false
+          });
+          return;
+        }
     // fakes api call time to test ui
     this.setState({ loading: true }, () => {
       setTimeout(
@@ -64,6 +80,18 @@ class Signup extends React.Component {
       );
     });
   };
+
+  recaptchaLoaded(){
+    console.log('Captcha loaded')
+  }
+  verifyCallback(response){
+    if (response){
+      console.log('TEST!!!')
+      this.setState({
+        verified: true
+      })
+    }
+  }
   handleCheck = e => {
       this.setState({
        terms: !this.state.terms})};
@@ -126,15 +154,25 @@ class Signup extends React.Component {
               defaultChecked={false}/>
 
           </label>
+          <div>
+            <Recaptcha
+              sitekey="6LeqCIAUAAAAANlSEnWoaSTVlMDmp-ylbNvtVEIC"
+              render="explicit"
+              verifyCallback={this.verifyCallback}
+              onloadCallback={this.recaptchaLoaded}
+            />
+          </div>
           <button type="submit">
             Sign
             {loading && "ing"} Up
           </button>
+
         </fieldset>
         {this.state.successMessage && (
           <Message>{this.state.successMessage}</Message>
         )}
       </Form>
+
     );
   }
 }
