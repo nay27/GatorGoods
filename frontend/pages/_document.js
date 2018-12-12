@@ -10,7 +10,6 @@ export default class MyDocument extends Document {
     const styleTags = sheet.getStyleElement();
     return { ...page, styleTags };
   }
-
   render() {
     return (
       <html>
@@ -21,6 +20,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+           <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
         </body>
       </html>
     );

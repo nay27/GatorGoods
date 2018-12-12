@@ -156,7 +156,7 @@ class Signup extends React.Component {
           </label>
           <div>
             <Recaptcha
-              sitekey="6LeqCIAUAAAAANlSEnWoaSTVlMDmp-ylbNvtVEIC"
+              sitekey="6Ldb2oAUAAAAAO3W64AyTfSd5iSOiZGVZYi_xF3U"
               render="explicit"
               verifyCallback={this.verifyCallback}
               onloadCallback={this.recaptchaLoaded}

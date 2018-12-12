@@ -25,6 +25,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-recaptcha": "^2.3.10",
     "styled-components": "^4.0.3"
   },
   "devDependencies": {
