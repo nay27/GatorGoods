@@ -4,6 +4,7 @@ from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
 from goods import views
+from rest_framework.authtoken import views as view
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -21,4 +22,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^upload/', views.FileUploadView.as_view()),
     path('admin/', admin.site.urls),
+    path('api-token-auth/', view.obtain_auth_token, name='api-token-auth')
 ]

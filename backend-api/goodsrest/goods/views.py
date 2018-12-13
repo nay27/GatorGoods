@@ -4,7 +4,8 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, filters, generics
 from goods.serializers import *
 from goods.models import *
-
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from django_filters import rest_framework as restfilters
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.parsers import MultiPartParser, FileUploadParser
@@ -31,6 +32,8 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
+    #authentication_classes = (TokenAuthentication,)
+    #permission_classes = (IsAuthenticated,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
