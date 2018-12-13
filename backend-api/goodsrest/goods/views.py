@@ -61,11 +61,19 @@ class LocationViewSet(viewsets.ModelViewSet):
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+    filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
+    __fields = ('sender', 'recipient', 'sender__id', 'recipient__id', 'about_item', 'about_item__id')
+    filter_fields = __fields
+    search_fields = __fields
 
 
 class WishListViewSet(viewsets.ModelViewSet):
     queryset = WishList.objects.all()
     serializer_class = WishListSerializer
+    filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
+    __fields = ('user', 'user__id', 'item', 'item__id')
+    filter_fields = __fields
+    search_fields = __fields
 
 
 class SearchViewSet(viewsets.ReadOnlyModelViewSet):
