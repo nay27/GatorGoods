@@ -27,18 +27,22 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class GroupViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    #authentication_classes = (TokenAuthentication,)
-    #permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
 class ItemViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -48,6 +52,8 @@ class ItemViewSet(viewsets.ModelViewSet):
 
 
 class ImageViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
     filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -57,11 +63,15 @@ class ImageViewSet(viewsets.ModelViewSet):
 
 
 class LocationViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
 
 
 class MessageViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -71,6 +81,8 @@ class MessageViewSet(viewsets.ModelViewSet):
 
 
 class WishListViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = WishList.objects.all()
     serializer_class = WishListSerializer
     filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -80,6 +92,8 @@ class WishListViewSet(viewsets.ModelViewSet):
 
 
 class SearchViewSet(viewsets.ReadOnlyModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
@@ -89,6 +103,8 @@ class SearchViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class FileUploadView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     parser_class = (MultiPartParser,)
 
     def post(self, request, format=None):
