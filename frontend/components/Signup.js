@@ -142,14 +142,14 @@ class Signup extends React.Component {
             />
           </label>
 
-          <label>
-            <a href="#">Terms and Conditions</a>
+          <label htmlFor="termsCheckbox">
             <input
               type="checkbox"
               id="termsCheckbox"
               onChange={this.handleCheck}
               defaultChecked={false}
             />
+            <a href="#">Terms and Conditions</a>
           </label>
           <div>
             <Recaptcha
