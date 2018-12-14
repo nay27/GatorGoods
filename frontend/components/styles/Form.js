@@ -28,6 +28,12 @@ const Form = styled.form`
       display: block;
       width: 100%;
     }
+    input[type="checkbox"] {
+      display: inline;
+      width: auto; /* if you see a warning here, ignore it */
+      vertical-align: text-bottom;
+      margin-right: 0.1rem;
+    }
     select {
       border-radius: 0;
       display: block;

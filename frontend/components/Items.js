@@ -4,6 +4,7 @@ import Item from "./Item";
 import PaginationProvider from "./PaginationProvider";
 import PageInfo from "./PageInfo";
 import { CategoryContext } from "./CategoriesProvider";
+import Dropdown from "./Dropdown";
 
 const ItemsWrapper = styled.div`
   display: grid;
@@ -13,7 +14,24 @@ const ItemsWrapper = styled.div`
   }
 `;
 
+const BlockLabel = styled.label`
+  display: block;
+`;
+
+const orderingOptions = [
+  { name: "Price Ascending", value: "+price" },
+  { name: "Price Descending", value: "-price" },
+  { name: "Newest", value: "-modified" },
+  { name: "Oldest", value: "+modified" }
+];
+
 class Items extends React.Component {
+  state = {
+    currentOrdering: "+price"
+  };
+  handleOrderingChange = newValue => {
+    this.setState({ currentOrdering: newValue });
+  };
   render() {
     const {
       router: { query }
@@ -26,6 +44,7 @@ class Items extends React.Component {
             : "/items"
         }
         ifNone="/items"
+        ordering={this.state.currentOrdering}
       >
         {info => (
           <>
@@ -39,6 +58,14 @@ class Items extends React.Component {
               ) : (
                 <small>Showing {info.count} item(s)</small>
               )}
+              <BlockLabel>
+                Order:
+                <Dropdown
+                  options={orderingOptions}
+                  defaultSelection="+price"
+                  onChange={this.handleOrderingChange}
+                />
+              </BlockLabel>
             </div>
             <ItemsWrapper>
               <CategoryContext.Consumer>

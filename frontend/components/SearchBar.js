@@ -33,6 +33,7 @@ class SearchBar extends React.Component {
     this.props.onSearch(this.state.categoryId, this.state.query);
   };
   componentDidMount() {
+    // reset selection on route changes
     Router.events.on("routeChangeComplete", this.handleRouteChange);
   }
   componentWillUnmount() {

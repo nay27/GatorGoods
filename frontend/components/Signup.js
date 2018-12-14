@@ -6,7 +6,7 @@ API is called to send POST request with formdata to create user.
 
 import Form from "./styles/Form";
 import Error from "./Error";
-import Message from "./styles/Message";
+import Message from "./styles/Message";\
 import Recaptcha from 'react-recaptcha';
 import api from "../api";
 
@@ -91,12 +91,14 @@ class Signup extends React.Component {
     if (response){
       this.setState({
         verified: true
-      })
+      });
     }
   }
   handleCheck = e => {
-      this.setState({
-       terms: !this.state.terms})};
+    this.setState({
+      terms: !this.state.terms
+    });
+  };
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -118,7 +120,7 @@ class Signup extends React.Component {
               name="email"
               id="email"
               pattern=".+@mail.sfsu.edu"
-              title= "Please use your school email address"
+              title="Please use your school email address"
               placeholder="Email"
               value={this.state.email}
               onChange={this.handleChange}
@@ -147,14 +149,14 @@ class Signup extends React.Component {
             />
           </label>
 
-           <label>
-            <a href="">Terms and Conditions</a>
+          <label htmlFor="termsCheckbox">
             <input
               type="checkbox"
               id="termsCheckbox"
               onChange={this.handleCheck}
-              defaultChecked={false}/>
-
+              defaultChecked={false}
+            />
+            <a href="#">Terms and Conditions</a>
           </label>
           <div>
             <Recaptcha
@@ -167,13 +169,11 @@ class Signup extends React.Component {
             Sign
             {loading && "ing"} Up
           </button>
-
         </fieldset>
         {this.state.successMessage && (
           <Message>{this.state.successMessage}</Message>
         )}
       </Form>
-
     );
   }
 }

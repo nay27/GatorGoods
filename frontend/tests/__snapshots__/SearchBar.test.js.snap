@@ -71,7 +71,9 @@ ShallowWrapper {
           id="search-input"
           name="query"
           onChange={[Function]}
+          pattern="^[^-~+=@#^&*\\\\\\\\\`]{0,40}$"
           placeholder="Search for an item..."
+          title="Your query contains invalid characters"
           type="text"
           value=""
         />
@@ -158,7 +160,9 @@ ShallowWrapper {
             id="search-input"
             name="query"
             onChange={[Function]}
+            pattern="^[^-~+=@#^&*\\\\\\\\\`]{0,40}$"
             placeholder="Search for an item..."
+            title="Your query contains invalid characters"
             type="text"
             value=""
           />,
@@ -325,7 +329,9 @@ ShallowWrapper {
             "id": "search-input",
             "name": "query",
             "onChange": [Function],
+            "pattern": "^[^-~+=@#^&*\\\\\\\\\`]{0,40}$",
             "placeholder": "Search for an item...",
+            "title": "Your query contains invalid characters",
             "type": "text",
             "value": "",
           },
@@ -523,7 +529,9 @@ ShallowWrapper {
             id="search-input"
             name="query"
             onChange={[Function]}
+            pattern="^[^-~+=@#^&*\\\\\\\\\`]{0,40}$"
             placeholder="Search for an item..."
+            title="Your query contains invalid characters"
             type="text"
             value=""
           />
@@ -610,7 +618,9 @@ ShallowWrapper {
               id="search-input"
               name="query"
               onChange={[Function]}
+              pattern="^[^-~+=@#^&*\\\\\\\\\`]{0,40}$"
               placeholder="Search for an item..."
+              title="Your query contains invalid characters"
               type="text"
               value=""
             />,
@@ -777,7 +787,9 @@ ShallowWrapper {
               "id": "search-input",
               "name": "query",
               "onChange": [Function],
+              "pattern": "^[^-~+=@#^&*\\\\\\\\\`]{0,40}$",
               "placeholder": "Search for an item...",
+              "title": "Your query contains invalid characters",
               "type": "text",
               "value": "",
             },
