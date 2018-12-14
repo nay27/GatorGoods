@@ -1,3 +1,6 @@
+/*
+Component for disclaimer
+*/
 import styled from "styled-components";
 import Nav from "./Nav";
 
