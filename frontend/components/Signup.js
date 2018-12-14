@@ -1,12 +1,11 @@
 import Form from "./styles/Form";
 import Error from "./Error";
 import Message from "./styles/Message";
-import Recaptcha from 'react-recaptcha';
-
+import Recaptcha from "react-recaptcha";
 
 class Signup extends React.Component {
-  constructor (props){
-    super (props)
+  constructor(props) {
+    super(props);
 
     this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
     this.verifyCallback = this.verifyCallback.bind(this);
@@ -46,24 +45,20 @@ class Signup extends React.Component {
       });
       return;
     }
-    if (
-          !this.state.terms
-        ) {
-          this.setState({
-            error: { message: "Please accept the terms and conditions." },
-            loading: false
-          });
-          return;
-        }
-      if (
-          !this.state.verified
-        ) {
-          this.setState({
-            error: { message: "Please verify that you are a human." },
-            loading: false
-          });
-          return;
-        }
+    if (!this.state.terms) {
+      this.setState({
+        error: { message: "Please accept the terms and conditions." },
+        loading: false
+      });
+      return;
+    }
+    if (!this.state.verified) {
+      this.setState({
+        error: { message: "Please verify that you are a human." },
+        loading: false
+      });
+      return;
+    }
     // fakes api call time to test ui
     this.setState({ loading: true }, () => {
       setTimeout(
@@ -81,20 +76,22 @@ class Signup extends React.Component {
     });
   };
 
-  recaptchaLoaded(){
-    console.log('Captcha loaded')
+  recaptchaLoaded() {
+    console.log("Captcha loaded");
   }
-  verifyCallback(response){
-    if (response){
-      console.log('TEST!!!')
+  verifyCallback(response) {
+    if (response) {
+      console.log("TEST!!!");
       this.setState({
         verified: true
-      })
+      });
     }
   }
   handleCheck = e => {
-      this.setState({
-       terms: !this.state.terms})};
+    this.setState({
+      terms: !this.state.terms
+    });
+  };
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -116,7 +113,7 @@ class Signup extends React.Component {
               name="email"
               id="email"
               pattern=".+@mail.sfsu.edu"
-              title= "Please use your school email address"
+              title="Please use your school email address"
               placeholder="Email"
               value={this.state.email}
               onChange={this.handleChange}
@@ -145,14 +142,14 @@ class Signup extends React.Component {
             />
           </label>
 
-           <label>
-            <a href="">Terms and Conditions</a>
+          <label>
+            <a href="#">Terms and Conditions</a>
             <input
               type="checkbox"
               id="termsCheckbox"
               onChange={this.handleCheck}
-              defaultChecked={false}/>
-
+              defaultChecked={false}
+            />
           </label>
           <div>
             <Recaptcha
@@ -166,13 +163,11 @@ class Signup extends React.Component {
             Sign
             {loading && "ing"} Up
           </button>
-
         </fieldset>
         {this.state.successMessage && (
           <Message>{this.state.successMessage}</Message>
         )}
       </Form>
-
     );
   }
 }
