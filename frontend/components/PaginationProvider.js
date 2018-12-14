@@ -28,7 +28,8 @@ class PaginationProvider extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
     resource: PropTypes.string.isRequired,
-    ifNone: PropTypes.string
+    ifNone: PropTypes.string,
+    ordering: PropTypes.string
   };
   state = {
     hasNextPage: false,
@@ -51,7 +52,8 @@ class PaginationProvider extends React.Component {
   }
   setup = async () => {
     this.setState({ loading: true });
-    const res = await api(this.props.resource);
+    const url = this._withOrdering(this.props.resource);
+    const res = await api(url);
     const json = await res.json();
     const data = await this.callAlternativeIfNeeded(json);
     this.setStateWithResults(data);
@@ -59,9 +61,17 @@ class PaginationProvider extends React.Component {
   callAlternativeIfNeeded = async data => {
     if (!this.props.ifNone) return data;
     if (data.count && data.count > 0) return data;
-    const res = await api(this.props.ifNone);
+    const res = await api(this._withOrdering(this.props.ifNone));
     const newData = await res.json();
     return { ...newData, ifNoneCalled: true };
+  };
+  _withOrdering = root => {
+    if (this.props.ordering) {
+      // check if there is already url search param(s)
+      const divider = root.includes("?") ? "&" : "?";
+      return `${root}${divider}ordering=${this.props.ordering}`;
+    }
+    return root;
   };
   setStateWithResults = data => {
     const { next, previous, count, results, ifNoneCalled = false } = data;
