@@ -39,9 +39,8 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
-    __fields = ('category', 'category__name')
-    filter_fields = __fields
-    search_fields = __fields
+    filter_fields = ('category', 'category__name')
+    search_fields = ('title', 'description')
 
 
 class ImageViewSet(viewsets.ModelViewSet):
@@ -104,6 +103,7 @@ class FileUploadView(APIView):
         im.save()
 
         return Response(status=status.HTTP_201_CREATED)
+
 
 class DisableCSRFMiddleware(object):
     def __init__(self, get_response):
