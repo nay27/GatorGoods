@@ -6,27 +6,24 @@ API is called to send POST request with formdata to create user.
 
 import Form from "./styles/Form";
 import Error from "./Error";
-import Message from "./styles/Message";\
-import Recaptcha from 'react-recaptcha';
+import Message from "./styles/Message";
+import Recaptcha from "react-recaptcha";
 import api from "../api";
-
+import { sha256 } from "sha256";
 
 class Signup extends React.Component {
-  constructor (props){
-    super (props)
-    this.verifyCallback = this.verifyCallback.bind(this);
-    this.state = {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      error: null,
-      successMessage: "",
-      loading: false,
-      terms: false,
-      verified: false
-    };
-  }
-  signin = e => {
+  state = {
+    email: "",
+    password: "",
+    confirmPassword: "",
+    error: null,
+    successMessage: "",
+    loading: false,
+    terms: false,
+    verified: false
+  };
+
+  signin = async function(e) {
     e.preventDefault();
 
     this.setState({ loading: true });
@@ -52,48 +49,47 @@ class Signup extends React.Component {
       });
       return;
     }
-    if (
-          !this.state.terms
-        ) {
-          this.setState({
-            error: { message: "Please accept the terms and conditions." },
-            loading: false
-          });
-          return;
-        }
-      if (
-          !this.state.verified
-        ) {
-          this.setState({
-            error: { message: "Please verify that you are a human." },
-            loading: false
-          });
-          return;
-        }
+    if (!this.state.terms) {
+      this.setState({
+        error: { message: "Please accept the terms and conditions." },
+        loading: false
+      });
+      return;
+    }
+   /* if (!this.state.verified) {
+      this.setState({
+        error: { message: "Please verify that you are a human." },
+        loading: false
+      });
+      return;
+    }
+    console.log(this.state.password);
+    const hashedPassword = await sha256(this.state.password);
+    console.log(hashedPassword);
+    const rawdata = {
+      username: this.state.email,
+      password: hashedPassword
+    };
 
-      const rawdata = {
-        "username": this.state.email,
-        "password": this.state.password
-      }
-
-      const data = JSON.stringify(rawdata);
-      api('/users/?format=json',{
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+    const data = JSON.stringify(rawdata);
+    console.log(data);
+    /*await api("/users/?format=json", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
       },
-        body: data,
-      }  );
-
+      body: data
+    });*/
+    console.log("test");
   };
-  verifyCallback(response){
-    if (response){
+  verifyCallback = response => {
+    if (response) {
       this.setState({
         verified: true
       });
     }
-  }
+  };
   handleCheck = e => {
     this.setState({
       terms: !this.state.terms
@@ -109,7 +105,7 @@ class Signup extends React.Component {
   render() {
     const { loading, error } = this.state;
     return (
-      <Form onSubmit={this.signin}>
+      <Form onSubmit={this.signin.bind(this)}>
         <h1>Sign up</h1>
         <Error error={this.state.error} />
         <fieldset aria-busy={loading} disabled={loading}>
@@ -158,13 +154,7 @@ class Signup extends React.Component {
             />
             <a href="#">Terms and Conditions</a>
           </label>
-          <div>
-            <Recaptcha
-              sitekey="6Ldb2oAUAAAAAO3W64AyTfSd5iSOiZGVZYi_xF3U"
-              render="explicit"
-              verifyCallback={this.verifyCallback}
-            />
-          </div>
+
           <button type="submit">
             Sign
             {loading && "ing"} Up
