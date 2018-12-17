@@ -1,3 +1,7 @@
+/*
+*   Used to style Sell page
+*/
+
 import styled from "styled-components";
 
 const Form = styled.form`

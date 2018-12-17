@@ -1,3 +1,8 @@
+/*
+*   Used to create grid display for posts
+*   Grid adjusts with window size
+*/
+
 import styled from "styled-components";
 
 const Grid = styled.div`
