@@ -1,3 +1,7 @@
+/*
+*   Tests for proper function of error.js
+*/
+
 import Error from "../components/Error";
 import { shallow } from "enzyme";
 

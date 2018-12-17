@@ -1,3 +1,7 @@
+/*
+*   Formats price for items
+*/
+
 const formatPrice = inCents => {
   let cents = String(inCents % 100);
   while (cents.length < 2) {

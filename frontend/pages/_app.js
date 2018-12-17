@@ -1,3 +1,7 @@
+/*
+*   Loads page props
+*/
+
 import React from "react";
 import App, { Container } from "next/app";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";

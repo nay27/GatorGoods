@@ -1,3 +1,8 @@
+/*
+*   Shows details of an individual item
+*   If item not found, will return list of all items
+*/
+
 import ItemDetail from "../components/ItemDetail";
 import Items from "../components/Items";
 

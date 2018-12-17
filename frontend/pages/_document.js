@@ -1,3 +1,7 @@
+/*
+*   Created to control loading scripts on a page
+*/
+
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
