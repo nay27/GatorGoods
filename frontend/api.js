@@ -1,3 +1,7 @@
+/*
+*   Fetches data from backend database
+*/
+
 import { BACKEND_API_URL, DEV_API_URL, TEST_API_URL } from "./config";
 
 const api = (path, options) => {
