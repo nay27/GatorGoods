@@ -9,7 +9,6 @@ import Error from "./Error";
 import Message from "./styles/Message";
 import Recaptcha from "react-recaptcha";
 import api from "../api";
-import { sha256 } from "sha256";
 
 class Signup extends React.Component {
   state = {
@@ -63,13 +62,10 @@ class Signup extends React.Component {
       });
       return;
     }
-    /*
-    console.log(this.state.password);
-    const hashedPassword = await sha256(this.state.password);
-    console.log(hashedPassword);
+
     const rawdata = {
       username: this.state.email,
-      password: hashedPassword
+      password: this.state.password
     };
 
     const data = JSON.stringify(rawdata);
@@ -82,7 +78,7 @@ class Signup extends React.Component {
       },
       body: data
     });
-    */
+
     console.log("test");
   };
   verifyCallback = response => {
