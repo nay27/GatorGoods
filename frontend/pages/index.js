@@ -6,6 +6,10 @@
 
 import Items from "../components/Items";
 import Greeting from "../components/Greeting";
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-130936580-1', {"debug":true,"gaOptions":{"cookieDomain":"none"}});
+ReactGA.pageview('/sell');
+
 
 export default () => (
   <>

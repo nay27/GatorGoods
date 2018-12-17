@@ -4,6 +4,10 @@
 
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import ReactGA from 'react-ga';
+console.log("TESTING!");
+ReactGA.initialize('UA-130936580-1', {"debug":true,"gaOptions":{"cookieDomain":"none"}});
+ReactGA.pageview('/about');
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -18,16 +22,6 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130936580-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'UA-130936580-1');
-        </script>
-
           {this.props.styleTags}
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
