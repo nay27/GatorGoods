@@ -1,4 +1,4 @@
-?*
+/*
 *   For the About page
 */
 
