@@ -1,13 +1,19 @@
+/*
+Sign Up form component.
+ReCaptcha is implemented in this component.
+API is called to send POST request with formdata to create user.
+*/
+
 import Form from "./styles/Form";
 import Error from "./Error";
-import Message from "./styles/Message";
-import Recaptcha from "react-recaptcha";
+import Message from "./styles/Message";\
+import Recaptcha from 'react-recaptcha';
+import api from "../api";
+
 
 class Signup extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
+  constructor (props){
+    super (props)
     this.verifyCallback = this.verifyCallback.bind(this);
     this.state = {
       email: "",
@@ -22,6 +28,7 @@ class Signup extends React.Component {
   }
   signin = e => {
     e.preventDefault();
+
     this.setState({ loading: true });
     if (
       !this.state.email ||
@@ -45,43 +52,43 @@ class Signup extends React.Component {
       });
       return;
     }
-    if (!this.state.terms) {
-      this.setState({
-        error: { message: "Please accept the terms and conditions." },
-        loading: false
-      });
-      return;
-    }
-    if (!this.state.verified) {
-      this.setState({
-        error: { message: "Please verify that you are a human." },
-        loading: false
-      });
-      return;
-    }
-    // fakes api call time to test ui
-    this.setState({ loading: true }, () => {
-      setTimeout(
-        () =>
+    if (
+          !this.state.terms
+        ) {
           this.setState({
-            loading: false,
-            email: "",
-            password: "",
-            confirmPassword: "",
-            successMessage: "Signed in!",
-            terms: true
-          }),
-        2000
-      );
-    });
-  };
+            error: { message: "Please accept the terms and conditions." },
+            loading: false
+          });
+          return;
+        }
+      if (
+          !this.state.verified
+        ) {
+          this.setState({
+            error: { message: "Please verify that you are a human." },
+            loading: false
+          });
+          return;
+        }
 
-  recaptchaLoaded() {
-    console.log("Captcha loaded");
-  }
-  verifyCallback(response) {
-    if (response) {
-      console.log("TEST!!!");
+      const rawdata = {
+        "username": this.state.email,
+        "password": this.state.password
+      }
+
+      const data = JSON.stringify(rawdata);
+      api('/users/?format=json',{
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+        body: data,
+      }  );
+
+  };
+  verifyCallback(response){
+    if (response){
       this.setState({
         verified: true
       });
@@ -102,7 +109,7 @@ class Signup extends React.Component {
   render() {
     const { loading, error } = this.state;
     return (
-      <Form onSubmit={this.signin} method="POST">
+      <Form onSubmit={this.signin}>
         <h1>Sign up</h1>
         <Error error={this.state.error} />
         <fieldset aria-busy={loading} disabled={loading}>
@@ -156,7 +163,6 @@ class Signup extends React.Component {
               sitekey="6Ldb2oAUAAAAAO3W64AyTfSd5iSOiZGVZYi_xF3U"
               render="explicit"
               verifyCallback={this.verifyCallback}
-              onloadCallback={this.recaptchaLoaded}
             />
           </div>
           <button type="submit">
