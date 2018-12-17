@@ -1,3 +1,7 @@
+/*
+*   GatorGoods Greeting for home/search page
+*/
+
 import styled from "styled-components";
 
 const Wrapper = styled.div`

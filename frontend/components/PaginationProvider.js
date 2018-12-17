@@ -1,7 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
-import api from "../api";
-
 /**
  * This component uses some more advanced concepts of React, I'll try to summarize here,
  * but this is by no means comprehensive and you should read more about Component Lifecycle
@@ -24,6 +20,11 @@ import api from "../api";
  * returned from the origial query.
  *
  */
+
+import React from "react";
+import PropTypes from "prop-types";
+import api from "../api";
+
 class PaginationProvider extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,

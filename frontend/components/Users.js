@@ -1,3 +1,7 @@
+/*
+*   Shows list of users, including user information
+*/
+
 import styled from "styled-components";
 import Error from "./Error";
 import PaginationProvider from "./PaginationProvider";

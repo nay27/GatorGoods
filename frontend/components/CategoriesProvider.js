@@ -1,3 +1,7 @@
+/*
+*   Loads categories to frontend page from backend database
+*/
+
 import React from "react";
 import { getCategories, categoryIdFromUrl } from "../api";
 

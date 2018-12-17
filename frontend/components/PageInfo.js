@@ -1,3 +1,8 @@
+/*
+*   'Go Back' and 'Next Page' buttons for
+*   Item posts if unable to fit on one page
+*/
+
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";

@@ -1,3 +1,8 @@
+/*
+*   Component for messaging seller about specific item
+*   Loads item title into message box
+*/
+
 import styled from "styled-components";
 import Router from "next/router";
 import Centered from "./styles/Centered";

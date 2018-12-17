@@ -1,3 +1,8 @@
+/*
+*   Sign in page, checks for student email
+*   Does not allow sign in with no password
+*/
+
 import Form from "./styles/Form";
 import Error from "./Error";
 import Message from "./styles/Message";

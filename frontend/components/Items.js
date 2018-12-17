@@ -1,3 +1,8 @@
+/*
+*   Sorts item posts by various ordering options
+*   Ascending/Descending price, oldest/newest items
+*/
+
 import styled from "styled-components";
 import { withRouter } from "next/router";
 import Item from "./Item";
