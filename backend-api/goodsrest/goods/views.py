@@ -80,7 +80,7 @@ class SearchViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ItemSerializer
     filter_backends = (restfilters.DjangoFilterBackend, SearchFilter, OrderingFilter)
     __fields = ('title', 'description')
-    filter_fields = __fields
+    filter_fields = '__all__'
     search_fields = __fields
 
 
