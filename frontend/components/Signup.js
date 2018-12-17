@@ -56,13 +56,14 @@ class Signup extends React.Component {
       });
       return;
     }
-   /* if (!this.state.verified) {
+   if (!this.state.verified) {
       this.setState({
         error: { message: "Please verify that you are a human." },
         loading: false
       });
       return;
     }
+    /*
     console.log(this.state.password);
     const hashedPassword = await sha256(this.state.password);
     console.log(hashedPassword);
@@ -73,14 +74,15 @@ class Signup extends React.Component {
 
     const data = JSON.stringify(rawdata);
     console.log(data);
-    /*await api("/users/?format=json", {
+      await api("/users/?format=json", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: data
-    });*/
+    });
+    */
     console.log("test");
   };
   verifyCallback = response => {
@@ -154,7 +156,13 @@ class Signup extends React.Component {
             />
             <a href="#">Terms and Conditions</a>
           </label>
-
+          <div>
+          <Recaptcha
+                 sitekey="6Lcg2oAUAAAAAOy_c1QvI9vwbPgZI0_C5-XZGYSw"
+                 render="explicit"
+                 verifyCallback={this.verifyCallback}
+            />
+          </div>
           <button type="submit">
             Sign
             {loading && "ing"} Up
