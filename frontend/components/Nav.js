@@ -1,3 +1,8 @@
+/*
+*   Navigation bar at top of page
+*   Present on every page of GatorGoods
+*/
+
 import styled from "styled-components";
 import Link from "next/link";
 import Router from "next/router";

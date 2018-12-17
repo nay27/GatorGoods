@@ -1,3 +1,8 @@
+/*
+*   Loads backend database to frontend page for
+*   Individual item details
+*/
+
 import styled from "styled-components";
 import { formatPrice } from "../utils";
 import Link from "next/link";

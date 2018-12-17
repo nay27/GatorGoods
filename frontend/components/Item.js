@@ -1,3 +1,8 @@
+/*
+*   Ensures that item information is fully loaded and
+*   Stylizes how page displays information on small and large screens
+*/
+
 import styled from "styled-components";
 import Link from "next/link";
 import PropTypes from "prop-types";

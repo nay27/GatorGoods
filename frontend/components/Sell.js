@@ -1,3 +1,8 @@
+/*
+*   Format for sell page, includes
+*   Message awaiting for Moderator approval
+*/
+
 import Centered from "./styles/Centered";
 import Form from "./styles/Form";
 import Link from "next/link";

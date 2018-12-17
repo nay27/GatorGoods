@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 /**
  * A simple wrapper around <select> to provide a nicer React api.
  */
+
+import React from "react";
+import PropTypes from "prop-types";
+
 class Dropdown extends React.Component {
   static propTypes = {
     options: PropTypes.arrayOf(

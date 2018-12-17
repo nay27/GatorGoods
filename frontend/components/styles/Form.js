@@ -1,5 +1,5 @@
 /*
-*   Used to style Sell page
+*   Used to format components of form
 */
 
 import styled from "styled-components";

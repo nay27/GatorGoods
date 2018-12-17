@@ -1,3 +1,7 @@
+/*
+*   Handles input in SearchBar including invalid inputs
+*/
+
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Router from "next/router";
