@@ -99,7 +99,7 @@ class FileUploadView(APIView):
         thumb = "small__" + str(f)
         PImage.open(path).resize((80, 80)).save(os.path.join(settings.MEDIA_ROOT, 'uploads', thumb))
 
-        im = Image(name=filename, path=path, thumbnail=thumb, item=Item.objects.get(pk=item_id))
+        im = Image(name=filename, path=filename, thumbnail=thumb, item=Item.objects.get(pk=item_id))
         im.save()
 
         return Response(status=status.HTTP_201_CREATED)

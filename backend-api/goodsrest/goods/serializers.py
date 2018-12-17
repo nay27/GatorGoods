@@ -25,7 +25,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 class ImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Image
-        fields = ('id', 'name', 'path', 'thumbnail', 'created', 'modified', 'enabled')
+        fields = ('id', 'item', 'name', 'path', 'thumbnail', 'created', 'modified', 'enabled')
 
 
 class LocationSerializer(serializers.HyperlinkedModelSerializer):
