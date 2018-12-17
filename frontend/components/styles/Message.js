@@ -1,3 +1,7 @@
+/*
+*   Stylizes page for messaging seller of an item
+*/
+
 import styled from "styled-components";
 
 const Message = styled.div`
