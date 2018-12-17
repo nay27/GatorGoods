@@ -1,3 +1,7 @@
+/*
+*   Tests for proper function of api.js
+*/
+
 import api, { categoryIdFromUrl, getCategories } from "../api";
 import { BACKEND_API_URL, DEV_API_URL, TEST_API_URL } from "../config";
 

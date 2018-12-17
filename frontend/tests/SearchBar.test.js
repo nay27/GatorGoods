@@ -1,3 +1,7 @@
+/*
+*   Tests for proper function of SearchBar.js
+*/
+
 import SearchBar from "../components/SearchBar";
 import { shallow, render, mount } from "enzyme";
 

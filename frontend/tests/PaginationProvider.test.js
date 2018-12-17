@@ -1,3 +1,7 @@
+/*
+*   Tests for proper function of PaginationProvider.js
+*/
+
 import { shallow, mount } from "enzyme";
 import PaginationProvider from "../components/PaginationProvider";
 

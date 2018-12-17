@@ -1,3 +1,7 @@
+/*
+*   Tests for proper function of utils.js
+*/
+
 import { formatPrice } from "../utils";
 
 describe("formatPrice", () => {
