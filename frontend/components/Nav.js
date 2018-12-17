@@ -87,7 +87,7 @@ class Nav extends React.Component {
           </Link>
           <SearchBar
             categories={this.state.categories}
-            defaultCategory={defaultCategory}
+            defaultCategory={this.props.category}
             defaultQuery={this.props.query}
             onSearch={(category, query) =>
               Router.push({

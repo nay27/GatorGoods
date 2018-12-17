@@ -12,9 +12,7 @@ const Form = styled.form`
 
 const stateFromProps = props => {
   return {
-    categoryId: props.defaultCategory
-      ? props.defaultCategory.id
-      : props.categories && props.categories[0].id,
+    categoryId: props.defaultCategory,
     query: props.defaultQuery || ""
   };
 };
