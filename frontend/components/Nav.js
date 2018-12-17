@@ -62,7 +62,7 @@ const NavWrapper = styled.nav`
   }
 `;
 
-const defaultCategory = { name: "All", id: 0 };
+const defaultCategory = { name: "All", id: null };
 
 class Nav extends React.Component {
   state = {
