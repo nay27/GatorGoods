@@ -10,12 +10,12 @@ const Name = styled.h3`
 
 export default () => (
   <div>
-  <h2>About page for Team15/Global team</h2>
+  <h2>About page for Team15 / Global team</h2>
       <Name >Jonas Kühle</Name>
         <p>
-          Current Status: Masters Student
-          Bachelors Degree: Applied Computer Science with Specialization in Embedded Systems at University of Applied Sciences Fulda
-          This site was built for CSC 648, Software Engineering at San Francisco State University
+          I'm a Masters student at University of Applies Scienes Fulda and currently on exchange at San Francisco State University. I am
+          looking forward to learn new technologies and especially soft skills and things about team work in a global context.
+          I'm enthusiastic about embedded systems, mobility of the future, ADAS, autonomous vehicles and running.
         </p>
       <Name>Eric Groom</Name>
         <p>
