@@ -24,15 +24,15 @@ const BlockLabel = styled.label`
 `;
 
 const orderingOptions = [
-  { name: "Price Ascending", value: "+price" },
-  { name: "Price Descending", value: "-price" },
+  { name: "Price: Low to High", value: "+price" },
+  { name: "Price: High to Low", value: "-price" },
   { name: "Newest", value: "-modified" },
   { name: "Oldest", value: "+modified" }
 ];
 
 class Items extends React.Component {
   state = {
-    currentOrdering: "+price"
+    currentOrdering: "-modified"
   };
   handleOrderingChange = newValue => {
     this.setState({ currentOrdering: newValue });
@@ -64,10 +64,10 @@ class Items extends React.Component {
                 <small>Showing {info.count} item(s)</small>
               )}
               <BlockLabel>
-                Order:
+                Sort:
                 <Dropdown
                   options={orderingOptions}
-                  defaultSelection="+price"
+                  defaultSelection="-modified"
                   onChange={this.handleOrderingChange}
                 />
               </BlockLabel>
