@@ -8,6 +8,7 @@ import Router from "next/router";
 import Centered from "./styles/Centered";
 import Form from "./styles/Form";
 import api from "../api";
+import SuccessMessage from "./styles/Message";
 
 const Row = styled.div`
   display: flex;
@@ -20,7 +21,8 @@ class Message extends React.Component {
   state = {
     loading: false,
     item: null,
-    error: null
+    error: null,
+    successMessage: null
   };
   async componentDidMount() {
     this.setState({ loading: true });
@@ -30,6 +32,9 @@ class Message extends React.Component {
   }
   handleSubmit = e => {
     e.preventDefault();
+    this.setState(
+      { successMessage: "Messeage Sent!" }
+    )
   };
   render() {
     return (
@@ -70,6 +75,9 @@ class Message extends React.Component {
               <button type="submit">Send</button>
             </Row>
           </fieldset>
+          {this.state.successMessage && (
+          <SuccessMessage>{this.state.successMessage}</SuccessMessage>
+        )}
         </Form>
       </Centered>
     );
