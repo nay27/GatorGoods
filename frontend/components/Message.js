@@ -52,10 +52,12 @@ class Message extends React.Component {
             <label htmlFor="location">
               Select an optional exchange location:
               <select name="location" width="100px">
-                <option value="Select Location">Select Location</option>
-                <option value="lib">Library</option>
-                <option value="quad">Quad</option>
-                <option value="opt2">...</option>
+                <option>Select Location</option>
+                <option>Library</option>
+                <option>Quad</option>
+                <option>Thorton Hall</option>
+                <option>HSS</option>
+                <option>Cafe Rosso</option>
               </select>
             </label>
             <Row>

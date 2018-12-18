@@ -9,6 +9,7 @@ import Error from "./Error";
 import Message from "./styles/Message";
 import Recaptcha from "react-recaptcha";
 import api from "../api";
+import Router from "next/router";
 
 class Signup extends React.Component {
   state = {
@@ -69,8 +70,8 @@ class Signup extends React.Component {
     };
 
     const data = JSON.stringify(rawdata);
-    console.log(data);
-      await api("/users/?format=json", {
+      try {
+        const response = await api("/users/?format=json", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -78,28 +79,44 @@ class Signup extends React.Component {
       },
       body: data
     });
-
-    console.log("test");
-  };
-  verifyCallback = response => {
-    if (response) {
+      if (response.ok){
+        this.setState( {
+          successMessage: "Account succesfully created! Redirecting to home page...",
+          loading: false
+        })
+        const that = this;
+        setTimeout(() => {
+          Router.push({pathname: "/"});
+        }, 2000)
+      } else {
+        this.setState( {
+          error: { message: "Account with this email already exists." },
+          loading: false
+        });
+      }
+      } catch (e) {
+          this.setState({error: e});
+      }
+    };
+    verifyCallback = response => {
+      if (response) {
+        this.setState({
+          verified: true
+        });
+      }
+    };
+    handleCheck = e => {
       this.setState({
-        verified: true
+        terms: !this.state.terms
       });
-    }
-  };
-  handleCheck = e => {
-    this.setState({
-      terms: !this.state.terms
-    });
-  };
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-      error: null,
-      successMessage: ""
-    });
-  };
+    };
+    handleChange = e => {
+      this.setState({
+        [e.target.name]: e.target.value,
+        error: null,
+        successMessage: ""
+      });
+    };
   render() {
     const { loading, error } = this.state;
     return (
