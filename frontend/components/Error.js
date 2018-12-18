@@ -1,23 +1,23 @@
-import styled from "styled-components";
+/*
+*   Provides a styled error message
+*/
 
-const ErrorWrapper = styled.div`
-    background-color: #FA8072;
-    color: #960018;
-    padding: 0.5rem;
-    border-radius: 2rem;
-    display: flex;
-    align-content: center;
-    justify-content: space-around;
-    margin: 2rem;
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import Message from "./styles/Message";
+
+const ErrorWrapper = styled(Message)`
+  background-color: #fa8072;
+  color: #960018;
 `;
 
-const Error = props => (
-    <>
-    { props.error && <ErrorWrapper>
-        {props.error.message}
-    </ErrorWrapper>
-    }
-    </>
-);
+const Error = props => {
+  if (props.error) return <ErrorWrapper>{props.error.message}</ErrorWrapper>;
+  else return null;
+};
+
+Error.propTypes = {
+  error: PropTypes.shape({ message: PropTypes.string })
+};
 
 export default Error;

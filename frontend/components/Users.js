@@ -1,41 +1,40 @@
+/*
+*   Shows list of users, including user information
+*/
+
 import styled from "styled-components";
-import { BACKEND_API_URL } from "../config";
 import Error from "./Error";
+import PaginationProvider from "./PaginationProvider";
+import PageInfo from "./PageInfo";
 
 const List = styled.ul`
-    list-style: none;
+  list-style: none;
 `;
 
 class Users extends React.Component {
-    state = {
-        loading: false,
-        users: null,
-        error: null
-    }
-    async componentDidMount() {
-        this.setState({loading: true});
-        try {
-            const res = await fetch(`${BACKEND_API_URL}/users/`);
-            const data = await res.json();
-            this.setState({users: data.results, loading: false});
-        } catch (error) {
-            this.setState({error: error, loading: false});
-        }
-    }
-    render() {
-        return (
-            <>
-                <h1>Users:</h1>
-                { this.state.loading && <p>Loading</p> }
-                <Error error={this.state.error} />
-                <List>
-                {this.state.users && this.state.users.map(user => (
-                        <li><strong>name:</strong>{user.username}, <strong>email:</strong> {user.email}</li>
+  render() {
+    return (
+      <PaginationProvider resource="/users">
+        {info => (
+          <>
+            <h1>Users:</h1>
+            {info.loading && <p>Loading</p>}
+            <Error error={info.error} />
+            <List>
+              {info.data &&
+                info.data.map(user => (
+                  <li key={user.id}>
+                    <strong>name:</strong>
+                    {user.username}, <strong>email:</strong> {user.email}
+                  </li>
                 ))}
-                </List>
-            </>
-        );
-    }
+            </List>
+            <PageInfo {...info} />
+          </>
+        )}
+      </PaginationProvider>
+    );
+  }
 }
 
 export default Users;

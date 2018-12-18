@@ -1,9 +1,19 @@
-import Users from "../components/Users"
-import styled from "styled-components";
+/*
+*   Formats web page to include
+*   GatorGoods Greeting on top followed by
+*   List of posted items below
+*/
 
-const Header = styled.h1`
-    color: red;
-    font-family: cursive;
-`;
+import Items from "../components/Items";
+import Greeting from "../components/Greeting";
 
-export default () => <Users />
+import ReactGA from 'react-ga';
+console.log("Testing home page ga");
+ReactGA.pageview('/');
+
+export default () => (
+  <>
+    <Greeting />
+    <Items />
+  </>
+);
