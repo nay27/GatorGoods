@@ -41,7 +41,6 @@ class Items extends React.Component {
     const {
       router: { query }
     } = this.props;
-    console.log(query && !!(query.query || query.category))
     return (
       <PaginationProvider
         resource={

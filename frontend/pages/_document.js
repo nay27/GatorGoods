@@ -4,10 +4,6 @@
 
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import ReactGA from 'react-ga';
-console.log("TESTING!");
-ReactGA.initialize('UA-130936580-1', {"debug":true,"gaOptions":{"cookieDomain":"none"}});
-ReactGA.pageview('/about');
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {

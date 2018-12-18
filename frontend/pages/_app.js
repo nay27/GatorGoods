@@ -8,9 +8,11 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Page from "../components/Page";
 import "isomorphic-fetch";
+
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-130936580-1', {"debug":true,"gaOptions":{"cookieDomain":"none"}});
-ReactGA.pageview('/sell', '/about' ,'/signin');
+ReactGA.pageview('/');
+
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
